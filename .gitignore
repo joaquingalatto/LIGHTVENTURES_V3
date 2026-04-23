@@ -1,0 +1,6 @@
+node_modules/
+.claude/
+project-memory.json
+figma_chunk1.js
+
+.git.worktree-broken
