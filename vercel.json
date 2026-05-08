@@ -1,12 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index.html"
+  "functions": {
+    "server.js": {
+      "includeFiles": "**/*"
     }
-  ],
+  },
   "headers": [
     {
       "source": "/assets/(.*)\\.mp4",

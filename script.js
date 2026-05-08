@@ -264,6 +264,7 @@ const registerRevealNodes = (nodes = document.querySelectorAll(".reveal")) => {
 const preparePaintText = () => {
   document.querySelectorAll(".narrative-break h2, .narrative-break__support").forEach((element) => {
     if (element.dataset.paintReady === "true") return;
+    if (element.classList.contains("mission-statement")) return;
 
     const text = element.textContent.trim();
     if (!text) return;
@@ -353,7 +354,7 @@ const initMotionRevealSystem = () => {
   });
 
   document.querySelectorAll(".narrative-break__inner").forEach((node) => {
-    bindMotionGroup(node, ":scope > .section-label, :scope > h2, :scope > .narrative-break__support", {
+    bindMotionGroup(node, ":scope > h2, :scope > .narrative-break__support", {
       duration: 0.82,
       distance: 12,
       blur: 8,
@@ -417,7 +418,6 @@ const initScrollStorytelling = () => {
     const paintTargets = section.querySelectorAll(".paint-text");
     const vector = section.querySelector("[data-vector-draw]");
     const vectorPath = vector?.querySelector("path");
-    const ticker = section.querySelector(".narrative-break__ticker");
     const inner = section.querySelector(".narrative-break__inner");
     const easeProgress = gsapApi.parseEase ? gsapApi.parseEase("power2.out") : (value) => value;
 
@@ -448,23 +448,6 @@ const initScrollStorytelling = () => {
             start: "top bottom",
             end: "bottom top",
             scrub: 1,
-          },
-        }
-      );
-    }
-
-    if (ticker) {
-      gsapApi.fromTo(
-        ticker,
-        { xPercent: 0 },
-        {
-          xPercent: -4,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
           },
         }
       );
@@ -509,7 +492,7 @@ const initScrollStorytelling = () => {
 };
 
 const initMicroInteractions = () => {
-  bindMotionHover(".site-nav a, .site-footer__nav a", { y: -1.5 }, { y: 0 });
+  bindMotionHover(".site-nav a, .site-footer__nav a, .site-footer__nav button", { y: -1.5 }, { y: 0 });
   bindMotionHover(".partnership-card a, .team-card__link", { x: 4 }, { x: 0 });
   bindMotionHover(
     ".button, .portfolio-filter, .contact-sheet__close, .video-control",
@@ -574,6 +557,17 @@ const initVideoControls = () => {
 
   ["play", "pause", "volumechange"].forEach((eventName) => {
     introVideo.addEventListener(eventName, syncVideoControls);
+  });
+
+  introVideo.addEventListener("error", () => {
+    videoPlayButtons.forEach((button) => {
+      button.disabled = true;
+      button.textContent = "Film Unavailable";
+    });
+    videoAudioButtons.forEach((button) => {
+      button.disabled = true;
+      button.textContent = "Audio Unavailable";
+    });
   });
 };
 
@@ -1001,17 +995,25 @@ const initContactForm = () => {
   });
 };
 
-renderTeam();
-renderPortfolio();
-renderExits();
-initNavigation();
-initHeader();
-initHeroMotion();
-initMotionRevealSystem();
-initScrollStorytelling();
-initMicroInteractions();
-initVideoControls();
-initTeamInteractions();
-initPortfolioInteractions();
-initContactSheet();
-initContactForm();
+const runInit = (name, callback) => {
+  try {
+    callback();
+  } catch (error) {
+    console.error(`[init:${name}]`, error);
+  }
+};
+
+runInit("renderTeam", renderTeam);
+runInit("renderPortfolio", renderPortfolio);
+runInit("renderExits", renderExits);
+runInit("initNavigation", initNavigation);
+runInit("initHeader", initHeader);
+runInit("initVideoControls", initVideoControls);
+runInit("initContactSheet", initContactSheet);
+runInit("initContactForm", initContactForm);
+runInit("initTeamInteractions", initTeamInteractions);
+runInit("initPortfolioInteractions", initPortfolioInteractions);
+runInit("initHeroMotion", initHeroMotion);
+runInit("initMotionRevealSystem", initMotionRevealSystem);
+runInit("initScrollStorytelling", initScrollStorytelling);
+runInit("initMicroInteractions", initMicroInteractions);
