@@ -217,7 +217,11 @@ const serveStaticFile = (requestPath, res) => {
 
 const server = http.createServer(async (req, res) => {
   const requestUrl = new URL(req.url, `http://${req.headers.host}`);
-  const requestPath = requestUrl.pathname === "/" ? "/index.html" : requestUrl.pathname;
+  let requestPath = requestUrl.pathname === "/" ? "/index.html" : requestUrl.pathname;
+
+  if (requestPath === "/events" || requestPath === "/events/") {
+    requestPath = "/events.html";
+  }
 
   if (requestPath === "/api/contact") {
     await handleContactSubmission(req, res);

@@ -52,6 +52,7 @@
             <a href="#team">Team</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#incubator">Incubator</a>
+            <a href="/events">Events</a>
             <button
               class="button button--dark site-nav__cta"
               type="button"
@@ -88,7 +89,19 @@
                   <span class="hero__headline-line">Founders helping founders</span>
                   <span class="hero__headline-line">bring light and</span>
                   <span class="hero__headline-line hero__headline-line--accent">
-                    <span class="hero__headline-mark" aria-hidden="true"></span>
+                    <span class="hero__headline-mark" aria-hidden="true">
+                      <svg viewBox="0 0 150 129" focusable="false">
+                        <path
+                          class="hero__headline-mark-fill"
+                          d="M2.08342 0.320801L63.4764 62.5215L0 128.077H59.7966L124.842 60.6276L64.9375 0.320801H2.08342Z"
+                        />
+                        <path
+                          class="hero__headline-mark-stroke"
+                          d="M88.8832 0.320801L148.788 60.6276L83.7423 128.077"
+                          pathLength="1"
+                        />
+                      </svg>
+                    </span>
                     <span>innovation</span>
                   </span>
                   <span class="hero__headline-line">into the world.</span>
@@ -162,17 +175,6 @@
         <div class="shell">
           <div class="frame frame--dark">
             <div class="narrative-break__inner reveal">
-              <svg
-                class="narrative-break__vector"
-                data-vector-draw
-                viewBox="0 0 849 855"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M561.86 575.41L848.34 279.24L571.53 0.5H281.18L564.76 287.95L271.5 590.89L559.92 854.15H283.11L0.5 575.41L286.98 281.18"
-                />
-              </svg>
               <h2 class="mission-statement">
                 <span>To illuminate</span>
                 <span>the world,</span>
@@ -190,8 +192,14 @@
       <section class="section" id="thesis">
         <div class="shell">
           <div class="frame">
-            <div class="section-head reveal">
-              <h2>Impact, founder fit, and technical discipline.</h2>
+            <div class="section-head section-head--investment reveal">
+              <h2>
+                <span class="section-head--investment__topline">
+                  <span class="section-head--investment__mark" aria-hidden="true"></span>
+                  <span>Our</span>
+                </span>
+                <span>Thesis</span>
+              </h2>
             </div>
 
             <div class="thesis-grid">
@@ -227,59 +235,75 @@
         </div>
       </section>
 
-      <section class="section" id="lifecycle">
+      <section class="section section--lifecycle" id="lifecycle">
         <div class="shell">
           <div class="frame">
-            <div class="section-head reveal">
-              <h2>Where in the lifecycle we participate.</h2>
+            <div class="section-head section-head--lifecycle reveal">
+              <h2>Where in the lifecycle we participate</h2>
               <p>
                 We emphasize investments in earlier stages, but participate in all stages of the
                 company lifecycle. We have personally navigated all stages of the start-to-exit
                 journey, and believe that our participation throughout the continuum adds valuable
-                perspective to our portfolio companies, from what to prepare for ahead to what to
+                perspective to our portfolio companies — from what to prepare for ahead, or what to
                 adopt faster as you scale.
               </p>
             </div>
 
-            <div class="lifecycle-grid">
-              <article class="lifecycle-stage reveal">
-                <p class="lifecycle-stage__index">01</p>
-                <h3>Early Stage</h3>
-                <p>
-                  Founders focus on building the founding team, developing a thoughtful product
-                  roadmap, and identifying initial customers in order to determine early market
-                  validation and product revenues.
-                </p>
+            <div class="lifecycle-grid lifecycle-stack" aria-label="Company lifecycle participation stages">
+              <article class="lifecycle-stage reveal" style="--event-index: 0">
+                <div class="lifecycle-stage__meta">
+                  <p class="lifecycle-stage__index">01</p>
+                </div>
+                <div class="lifecycle-stage__body">
+                  <h3>Early Stage</h3>
+                  <p>
+                    At the early stage, founders are most focused on building the founding team,
+                    developing a thoughtful product roadmap, and identifying initial customers in
+                    order to determine early market validation and product revenues.
+                  </p>
+                </div>
               </article>
 
-              <article class="lifecycle-stage reveal reveal--up">
-                <p class="lifecycle-stage__index">02</p>
-                <h3>Growth Stage</h3>
-                <p>
-                  As portfolio companies start to scale, we assist with team building, identifying
-                  additional customers, product expansion opportunities, and introductions to
-                  potential new co-investors.
-                </p>
+              <article class="lifecycle-stage reveal" style="--event-index: 1">
+                <div class="lifecycle-stage__meta">
+                  <p class="lifecycle-stage__index">02</p>
+                </div>
+                <div class="lifecycle-stage__body">
+                  <h3>Growth Stage</h3>
+                  <p>
+                    As portfolio companies start to scale, we assist with team building,
+                    identifying additional customers, product expansion opportunities, and
+                    introductions to potential new co-investors.
+                  </p>
+                </div>
               </article>
 
-              <article class="lifecycle-stage reveal reveal--up">
-                <p class="lifecycle-stage__index">03</p>
-                <h3>Late Stage</h3>
-                <p>
-                  Our focus turns toward broader strategic opportunities that are essential to
-                  building an enduring and valuable business, including product line extensions,
-                  new forms of capital, and strategic transactions that accelerate growth.
-                </p>
+              <article class="lifecycle-stage reveal" style="--event-index: 2">
+                <div class="lifecycle-stage__meta">
+                  <p class="lifecycle-stage__index">03</p>
+                </div>
+                <div class="lifecycle-stage__body">
+                  <h3>Late Stage</h3>
+                  <p>
+                    Our focus turns toward broader strategic opportunities that are essential to
+                    building an enduring and valuable business, including product line extensions,
+                    new forms of capital, and strategic transactions that accelerate growth.
+                  </p>
+                </div>
               </article>
 
-              <article class="lifecycle-stage reveal reveal--right">
-                <p class="lifecycle-stage__index">04</p>
-                <h3>Exit / Liquidity</h3>
-                <p>
-                  Decisions taken at this stage have an outsized impact on the eventual narrative.
-                  Thoughtful engagement with management teams helps ensure the optimal outcome is
-                  achieved and the relationship continues well beyond one company.
-                </p>
+              <article class="lifecycle-stage reveal" style="--event-index: 3">
+                <div class="lifecycle-stage__meta">
+                  <p class="lifecycle-stage__index">04</p>
+                </div>
+                <div class="lifecycle-stage__body">
+                  <h3>Exit / Liquidity</h3>
+                  <p>
+                    Decisions taken at this stage have an outsized impact on the eventual
+                    narrative. Thoughtful engagement with management teams helps ensure the optimal
+                    outcome is achieved and the relationship continues well beyond one company.
+                  </p>
+                </div>
               </article>
             </div>
           </div>
@@ -289,24 +313,22 @@
       <section class="narrative-break narrative-break--advantage" id="advantage">
         <div class="shell">
           <div class="frame frame--dark">
-            <div class="narrative-break__inner reveal">
-              <svg
-                class="narrative-break__vector"
-                data-vector-draw
-                viewBox="0 0 849 855"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M561.86 575.41L848.34 279.24L571.53 0.5H281.18L564.76 287.95L271.5 590.89L559.92 854.15H283.11L0.5 575.41L286.98 281.18"
-                />
-              </svg>
-              <h2>
-                Collectively, we have launched multiple venture funds, yielded multiple unicorns,
-                founded angel networks, raised hundreds of millions, and built and sold multiple
-                companies over three decades.
+            <div class="narrative-break__inner advantage-panel reveal">
+              <h2 class="advantage-title">
+                <span>Our</span>
+                <span>Advantage</span>
               </h2>
-              <p class="narrative-break__support">
+              <p class="advantage-lede">
+                Three decades of operator-led execution across venture creation, company scaling,
+                and successful exits.
+              </p>
+              <div class="advantage-pills" aria-label="Light Ventures advantages">
+                <span>Multiple venture funds launched</span>
+                <span>Multiple unicorn outcomes</span>
+                <span>Founded and exited multiple companies</span>
+                <span>Hundreds of millions raised and deployed</span>
+              </div>
+              <p class="narrative-break__support advantage-support">
                 Let’s work together to leverage our network, healthcare and technology expertise,
                 and entrepreneurial / operational experience to win together.
               </p>
@@ -318,7 +340,7 @@
       <section class="section section--team" id="team">
         <div class="shell">
           <div class="frame">
-            <div class="section-head section-head--split reveal">
+            <div class="section-head reveal">
               <div>
                 <h2>Founders, venture partners, and advisors.</h2>
                 <p>
@@ -326,9 +348,16 @@
                   of operators, investors, and specialists.
                 </p>
               </div>
+            </div>
 
-              <aside class="partnership-card">
+            <div class="team-groups" data-team-groups></div>
+
+            <aside class="partnership-card partnership-card--team reveal">
+              <div class="partnership-card__head">
+                <span class="partnership-card__mark" aria-hidden="true"></span>
                 <h3>SRI x GIL</h3>
+              </div>
+              <div class="partnership-card__content">
                 <p>
                   Light Ventures partnered with SRI and Global Innovation Labs to fund Monarch
                   Quantum, and continues to work with David Park and aligned partners on sourcing,
@@ -337,10 +366,8 @@
                 <a href="https://gilabs.co/" target="_blank" rel="noreferrer">
                   Global Innovation Labs
                 </a>
-              </aside>
-            </div>
-
-            <div class="team-groups" data-team-groups></div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>

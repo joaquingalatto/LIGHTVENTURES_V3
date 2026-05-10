@@ -1,0 +1,407 @@
+{
+  "project_name": "Light Ventures website",
+  "project_context": {
+    "current_working_version": "Local repo at C:/Users/joaqu/OneDrive/Documentos/LIGHTVENTURES V3, served by node server.js at http://localhost:4321. Current branch is main connected to https://github.com/joaquingalatto/LIGHTVENTURES_V3.",
+    "source_of_truth_version": "The client preferred the original/older approved version. That older version is the source of truth for visual logic and structure; current work should be treated as an integration/update pass, not a redesign.",
+    "client_feedback_summary": "Preserve the original hero structure and visual logic. Reduce lateral margins, use #F2F1F0 for light backgrounds, remove eyebrow labels and large section tickers, keep nav simple, refine hero motion without changing layout/copy, update Mission and Our Advantage styling from approved references, add/refine Team and Portfolio sections natively, avoid gimmicks, flip cards, accordion portfolio behavior, and over-redesign.",
+    "main_goal": "Continue refining and integrating updated content and sections into the approved Light Ventures homepage while keeping the original premium editorial identity intact.",
+    "current_status": "Homepage is implemented as a static Node-served site with data-driven Team and Portfolio sections. Current local files include uncommitted changes after the last pushed commit, including hero motion refinements, section copy/style updates, team interaction fixes, and exit-card metric hierarchy updates."
+  },
+  "design_direction": {
+    "overall_tone": [
+      "editorial",
+      "premium",
+      "expensive-looking",
+      "controlled",
+      "elegant",
+      "restrained",
+      "sober",
+      "sophisticated"
+    ],
+    "visual_language": [
+      "Light monochrome editorial base with #F2F1F0 background",
+      "Dark navy statement sections",
+      "Mono typography with strong uppercase poster-like hierarchy",
+      "Thin border grid and frame system",
+      "Subtle brand chevron/line motif",
+      "Minimal cards only where content requires them",
+      "Logo and portrait assets should preserve original proportions"
+    ],
+    "typography": "Geist Mono is loaded locally via assets/fonts/GeistMono-Regular.ttf and GeistMono-Bold.ttf. The current system uses bold mono display type for hero and section statements, uppercase labels/buttons, and compact editorial body copy.",
+    "color_direction": [
+      "Primary light background: #F2F1F0",
+      "Primary text: #2A2829",
+      "Primary dark/navy: #101F3B and related navy gradients",
+      "Soft sage/accent: #D7DDD9",
+      "Pale lime highlight: #E9F0BF",
+      "Orange exists as a token but should be used sparingly"
+    ],
+    "layout_principles": [
+      "Preserve the framed shell layout and thin vertical borders",
+      "Keep the hero composition and line offsets intact unless specifically requested",
+      "Avoid adding unrelated sections or changing page architecture",
+      "Use whitespace, scale, and alignment before adding decorative UI",
+      "New sections must feel native to the original approved version",
+      "Keep responsive behavior stable and avoid horizontal overflow"
+    ],
+    "motion_principles": [
+      "Motion should be visible but controlled",
+      "Use staged entrance sequences for hero elements",
+      "Use opacity, transform, and subtle blur only",
+      "Respect prefers-reduced-motion",
+      "Avoid aggressive parallax",
+      "Use motion to clarify hierarchy rather than decorate"
+    ],
+    "what_to_avoid": [
+      "Full redesigns",
+      "Startup-template feel",
+      "Flashy effects",
+      "Particles, glow, bounce, typing effects, or gimmicky distortion",
+      "Literal 3D flip cards",
+      "Portfolio accordions or flip-card behavior",
+      "Changing approved structure without explicit direction",
+      "Stretching or distorting logos"
+    ]
+  },
+  "non_negotiables": [
+    "This is an integration/update pass, not a redesign.",
+    "The original/older approved version is the source of truth.",
+    "Preserve the original hero structure, composition, typography logic, and overall visual system.",
+    "Make the minimum necessary changes only.",
+    "Update content from the PPT/latest content source when available.",
+    "Add/maintain Team using Figma card assets when available; do not use literal 3D flip cards.",
+    "Add/maintain Portfolio using a two-column category/reveal model; do not use accordion behavior or flip cards.",
+    "Portfolio logos must preserve original proportions.",
+    "New sections must feel native to the approved version.",
+    "Do not redesign components unless explicitly requested.",
+    "Keep interactions keyboard accessible and respect reduced motion."
+  ],
+  "sections": {
+    "existing_sections_to_preserve": [
+      "Header/navigation",
+      "Hero",
+      "Video / In Motion section with intro film",
+      "Mission / illuminate the world section",
+      "Our Investment Approach / thesis section",
+      "Lifecycle section",
+      "Our Advantage section",
+      "Team section",
+      "Portfolio section",
+      "Incubator section",
+      "Contact callout and contact drawer",
+      "Footer"
+    ],
+    "sections_to_update_content_only": [
+      "Hero copy should remain unchanged unless client provides new approved copy",
+      "Mission statement should match latest approved content",
+      "Investment approach/thesis content should be updated from PPT/latest source when available",
+      "Lifecycle copy should be updated from PPT/latest source when available",
+      "Incubator copy should be updated from PPT/latest source when available",
+      "Team bios and profile links should be updated from authoritative source",
+      "Portfolio company categories and logos should be updated from authoritative source"
+    ],
+    "new_sections_to_add": [
+      "unknown"
+    ],
+    "sections_not_to_redesign": [
+      "Hero",
+      "Header/navigation",
+      "Overall framed shell system",
+      "Team card interaction model",
+      "Portfolio logo-card system",
+      "Contact drawer architecture"
+    ]
+  },
+  "hero": {
+    "current_state": "Hero uses the existing framed layout with logo/nav header, large mono uppercase headline split into line groups: 'Founders helping founders', 'bring light and', 'innovation' with a chevron mark, and 'into the world.'. The background uses assets/isolation-mode.svg as a large subtle line motif. The light background is #F2F1F0. JS/CSS currently add staged hero entrance motion and scroll compression.",
+    "must_preserve": [
+      "Hero copy",
+      "Hero layout and framed shell",
+      "Line-based headline composition",
+      "Chevron/accent next to INNOVATION",
+      "Navbar structure",
+      "CTA behavior opening contact drawer",
+      "Subtle brand motif in background"
+    ],
+    "desired_refinements": [
+      "Keep premium staged entrance visible but not flashy",
+      "Maintain a memorable but restrained INNOVATION moment",
+      "Keep background motif supportive and quiet",
+      "Ensure no headline clipping at common desktop and mobile widths",
+      "Keep scroll transition smooth and subtle"
+    ],
+    "known_issues": [
+      "Hero motion has been iterated several times and may need visual QA in browser after each change.",
+      "Large uppercase headline can clip if offsets or font size are pushed too far.",
+      "Motion relies on client-side JS and external package scripts from node_modules paths."
+    ]
+  },
+  "content": {
+    "content_source": "Current implementation uses index.html plus team-data.js and portfolio-data.js. Latest PPT/content source referenced by client is not present in the repo; exact PPT path is unknown.",
+    "approved_or_target_copy": {
+      "hero": "Founders helping founders bring light and innovation into the world.",
+      "why_founders_love_us": [
+        "unknown"
+      ],
+      "why_investors_love_us": [
+        "unknown"
+      ],
+      "mission_statement": "To illuminate the world, bringing hope, healing, and love through innovation.",
+      "our_thesis": [
+        "Impact: We are looking for entrepreneurs and teams that want to have an impact, address a large market or challenge, and build a business that can scale.",
+        "Founder Fit: We are founders who recognize founders that have specific passion, experience, or expertise to go to the ends of the earth to see a vision through to fruition.",
+        "Technicalities: Business model, market fit / timing, execution frameworks, organizational design, and discipline matter. We align, leverage these concepts, and achieve success together."
+      ],
+      "lifecycle": "We emphasize investments in earlier stages, but participate in all stages of the company lifecycle. Current stages are Early Stage, Growth Stage, Late Stage, and Exit / Liquidity.",
+      "our_advantage": [
+        "Our Advantage",
+        "Three decades of operator-led execution across venture creation, company scaling, and successful exits.",
+        "Multiple venture funds launched",
+        "Multiple unicorn outcomes",
+        "Founded and exited multiple companies",
+        "Hundreds of millions raised and deployed",
+        "Let's work together to leverage our network, healthcare and technology industry expertise, and entrepreneurial / operational experience to win together."
+      ],
+      "incubator": {
+        "lead_statement": "When the companies and ideas we want to back don't exist, we help build them.",
+        "supporting_intro": "We don't just fund the future. We build it.",
+        "bullets": [
+          "Earliest Stage",
+          "University Pipeline",
+          "IP and Moats"
+        ]
+      }
+    },
+    "content_rules": [
+      "Prefer approved source copy over generated copy.",
+      "Do not add marketing filler.",
+      "Preserve existing hero copy unless explicitly instructed.",
+      "Use concise section copy that fits the editorial design.",
+      "Fix mojibake/encoding artifacts when editing nearby text."
+    ]
+  },
+  "team_section": {
+    "source": "Current source is team-data.js and local portrait assets in assets/team. Figma card assets are referenced by project direction but no Figma link or MCP payload is present in the repo snapshot.",
+    "groups": [
+      "Co-Founders",
+      "Venture Partners",
+      "Advisors"
+    ],
+    "people_detected": [
+      "Douglas F. Wall",
+      "Justin J. Bellante",
+      "Jim Cleary",
+      "Rolf Benirschke",
+      "Steve Suhrheinrich",
+      "David Park",
+      "Jerome Fogel",
+      "James Nolan",
+      "Barry Yee",
+      "Tom Waller"
+    ],
+    "card_design_notes": [
+      "Cards use portrait, role, name, plus/minus indicator, expandable panel, summary, and optional profile link.",
+      "Portraits are shown grayscale.",
+      "Group count labels like '2 people' were removed.",
+      "CSS grid uses align-items: start so opening one card does not stretch neighboring cards.",
+      "Cards should feel native to the thin-border editorial system."
+    ],
+    "interaction_model": "Clicking a team card opens its panel and closes any other open card globally. The same trigger toggles the card closed if it is already active. This is an expand/collapse model, not a flip-card model.",
+    "accessibility_requirements": [
+      "Buttons need aria-expanded and aria-controls.",
+      "Panel should maintain aria-hidden state.",
+      "Links inside closed panels should not be focusable.",
+      "Keyboard users should be able to open/close cards.",
+      "Do not remove visible focus states."
+    ],
+    "do_not_do": [
+      "Do not use literal 3D flip cards.",
+      "Do not open neighboring cards visually.",
+      "Do not stretch closed cards to match open card height.",
+      "Do not reintroduce people-count labels unless requested."
+    ]
+  },
+  "portfolio_section": {
+    "source": "Current source is portfolio-data.js and local SVG logos in assets/portfolio.",
+    "structure": "Current implementation renders filter buttons from portfolio-data.js and a grid of logo cards for the active category. The 'all' category is generated by flattening all non-all categories. Notable Exits render as separate metric cards.",
+    "default_active_category": "all",
+    "category_mapping": {
+      "AI": [
+        "Illuno",
+        "SeedsMatch"
+      ],
+      "Healthcare": [
+        "Rad AI",
+        "Ultrasound AI",
+        "MedWatch Technologies"
+      ],
+      "Life Science": [
+        "ViroMissile",
+        "MEVA"
+      ],
+      "Technology": [
+        "Monarch Quantum",
+        "Live Data Technologies",
+        "Stealth"
+      ]
+    },
+    "logo_card_rules": [
+      "Preserve original logo proportions.",
+      "Use asset when available; use text fallback only when asset is missing.",
+      "Do not crop or stretch logos.",
+      "Cards should remain clean and editorial, not overly decorative.",
+      "Notable Exits metrics should be visually dominant but remain on one line."
+    ],
+    "detail_preview_behavior": "Target direction says Portfolio should use a two-column category/reveal model. Current implementation uses filter buttons and grid replacement; no detail preview panel is currently implemented.",
+    "interaction_model": "Current interaction is filter-button category selection. Client direction says do not use accordion behavior or flip cards.",
+    "accessibility_requirements": [
+      "Filter buttons should expose aria-pressed state.",
+      "Company logos need meaningful alt text.",
+      "Keyboard users should be able to switch categories.",
+      "Avoid hover-only access to important content."
+    ],
+    "known_issues": [
+      "assets/portfolio/agmonitor.svg exists but is not referenced in portfolio-data.js.",
+      "MEVA and Stealth have no logo asset configured.",
+      "Current structure may not yet match requested two-column category/reveal model."
+    ],
+    "do_not_do": [
+      "Do not use accordions.",
+      "Do not use flip cards.",
+      "Do not distort logos.",
+      "Do not add noisy hover effects."
+    ]
+  },
+  "contact_drawer": {
+    "current_state": "Contact drawer exists as a side sheet opened by Get Involved buttons. It posts to /api/contact and currently requires first name, last name, business email, company, inquiry type, and message. Optional fields include phone number and job title. Honeypot field is website.",
+    "desired_behavior": "Drawer should open from Get Involved CTAs, trap focus, close via overlay/close/Escape, and submit asynchronously with status feedback.",
+    "form_fields_visible_by_default": [
+      "First name",
+      "Last name",
+      "Business email",
+      "Phone number",
+      "Job title",
+      "Company",
+      "Inquiry type",
+      "Message"
+    ],
+    "fields_to_remove_or_make_optional": [
+      "Phone number is currently optional",
+      "Job title is currently optional",
+      "unknown"
+    ],
+    "design_notes": [
+      "Keep drawer sober and consistent with editorial frame system.",
+      "Do not turn it into a full-page form unless explicitly requested.",
+      "Backend requires Supabase env vars for real submissions."
+    ]
+  },
+  "assets": {
+    "logo": "assets/light-ventures-logo.svg",
+    "branding_pdf": "unknown",
+    "video": "assets/light-ventures-film.mp4 exists locally but is approximately 191 MB and excluded from Vercel deploy by .vercelignore. index.html references a GitHub media URL for the same video.",
+    "figma_team": "unknown",
+    "figma_portfolio": "unknown",
+    "company_logos": [
+      "assets/portfolio/agmonitor.svg",
+      "assets/portfolio/illuno.svg",
+      "assets/portfolio/live-data-technologies.svg",
+      "assets/portfolio/medwatch-technologies.svg",
+      "assets/portfolio/monarch-quantum.svg",
+      "assets/portfolio/rad-ai.svg",
+      "assets/portfolio/seedsmatch.svg",
+      "assets/portfolio/ultrasound-ai.svg",
+      "assets/portfolio/viromissile.svg"
+    ],
+    "team_portraits": [
+      "assets/team/barry-yee.png",
+      "assets/team/david-park.png",
+      "assets/team/douglas-wall.png",
+      "assets/team/james-nolan.png",
+      "assets/team/jerome-fogel.png",
+      "assets/team/jim-cleary.png",
+      "assets/team/justin-bellante.png",
+      "assets/team/rolf-benirschke.jpg",
+      "assets/team/steve-suhrheinrich.png",
+      "assets/team/tom-waller.png"
+    ],
+    "ceo_portraits": [
+      "unknown"
+    ],
+    "missing_assets": [
+      "Branding PDF not found in repo",
+      "PPT/latest content source not found in repo",
+      "Figma team link/assets not found in repo snapshot",
+      "Figma portfolio link/assets not found in repo snapshot",
+      "MEVA logo asset missing",
+      "Stealth logo asset missing",
+      "CEO portraits unknown"
+    ]
+  },
+  "technical_context": {
+    "framework": "Static HTML/CSS/JavaScript served by a custom Node HTTP server in server.js.",
+    "styling_approach": "Single global stylesheet styles.css using CSS variables, framed shell layout, responsive media queries, and class-based component styles.",
+    "animation_libraries": [
+      "motion package loaded from node_modules/motion/dist/motion.js",
+      "GSAP loaded from node_modules/gsap/dist/gsap.min.js",
+      "GSAP ScrollTrigger loaded from node_modules/gsap/dist/ScrollTrigger.min.js"
+    ],
+    "important_components": [
+      "site-header / site-nav",
+      "hero / hero__headline / hero__ambient / hero__footer",
+      "mission-statement",
+      "section-head--investment",
+      "advantage-panel",
+      "team cards rendered from team-data.js",
+      "portfolio filters/cards rendered from portfolio-data.js",
+      "contact-sheet / contact-form"
+    ],
+    "files_likely_involved": [
+      "index.html",
+      "styles.css",
+      "script.js",
+      "team-data.js",
+      "portfolio-data.js",
+      "server.js",
+      "vercel.json",
+      ".vercelignore",
+      "assets/light-ventures-logo.svg",
+      "assets/innovation-mark.svg",
+      "assets/isolation-mode.svg",
+      "assets/team/*",
+      "assets/portfolio/*"
+    ]
+  },
+  "current_risks": [
+    "Local working tree has uncommitted changes; future edits should inspect git diff before committing.",
+    "The original/older approved version is the source of truth, but current local implementation contains several iterative changes that may diverge from it.",
+    "Large video file is excluded from Vercel deploy; production relies on external GitHub media URL.",
+    "Contact form requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY for production submissions.",
+    "Some text contains mojibake/encoding artifacts from earlier edits, especially smart apostrophes in existing copy.",
+    "Hero animation complexity has increased and should be checked visually across desktop/mobile and reduced-motion.",
+    "Portfolio target model is two-column category/reveal, but current implementation is still filter grid.",
+    "Figma/PPT sources are referenced in direction but not present locally."
+  ],
+  "open_questions": [
+    "Where is the original/older approved source-of-truth version located?",
+    "What is the path or link to the latest PPT/content source?",
+    "What are the Figma links for Team cards and Portfolio assets?",
+    "Should the current hero motion pass remain, or should it be reduced to match the older approved version?",
+    "Should Portfolio be converted from filter grid to the requested two-column category/reveal model now?",
+    "Which category should be default active if the two-column Portfolio model is implemented?",
+    "Are MEVA, Stealth, and AGMonitor supposed to be displayed, and where are their approved logos/content?",
+    "Are CEO portraits required, and where are they stored?",
+    "Which contact form fields should be removed or made optional beyond phone/job title?",
+    "Should current local changes be committed before further work?"
+  ],
+  "recommended_next_steps": [
+    "Locate and preserve the original/older approved version as a branch, tag, or reference folder.",
+    "Add the latest PPT/content source to the project context or provide its path/link.",
+    "Provide Figma links or exported assets for Team and Portfolio.",
+    "Audit current implementation against the approved source-of-truth version and identify only necessary deltas.",
+    "Resolve encoding/mojibake artifacts in visible copy.",
+    "Decide whether to implement the Portfolio two-column category/reveal model next.",
+    "Verify hero, team cards, portfolio filters, contact drawer, and video in desktop and mobile browsers.",
+    "Commit the JSON context file separately or with the next approved batch of changes."
+  ]
+}

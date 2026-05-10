@@ -262,9 +262,24 @@ const registerRevealNodes = (nodes = document.querySelectorAll(".reveal")) => {
 };
 
 const preparePaintText = () => {
+  document.querySelectorAll(".mission-statement").forEach((statement) => {
+    if (statement.dataset.missionPaintReady === "true") return;
+    statement.dataset.missionPaintReady = "true";
+    statement.classList.add("mission-statement--paint");
+
+    statement.querySelectorAll(":scope > span").forEach((line) => {
+      const text = line.textContent.trim();
+      if (!text) return;
+      line.dataset.text = text;
+      line.style.setProperty("--mission-paint-clip", "100%");
+      line.classList.add("mission-paint-line");
+    });
+  });
+
   document.querySelectorAll(".narrative-break h2, .narrative-break__support").forEach((element) => {
     if (element.dataset.paintReady === "true") return;
     if (element.classList.contains("mission-statement")) return;
+    if (element.closest(".narrative-break--advantage")) return;
 
     const text = element.textContent.trim();
     if (!text) return;
@@ -287,23 +302,17 @@ const preparePaintText = () => {
 };
 
 const initHeroMotion = () => {
-  if (!motionAvailable || reduceMotion() || !heroHeadlineWrap || !heroFooter) return;
+  if (reduceMotion() || !heroHeadlineWrap || !heroFooter) {
+    document.body.classList.add("hero-motion-reduced");
+    return;
+  }
 
-  primeMotionTargets(heroHeadlineWrap.querySelectorAll(".hero__headline-line"), 18);
-  animateElementsIn(heroHeadlineWrap.querySelectorAll(".hero__headline-line"), {
-    duration: 0.86,
-    distance: 16,
-    blur: 10,
-    staggerAmount: 0.055,
-  });
+  document.body.classList.add("hero-motion-ready");
 
-  primeMotionTargets(heroFooter.children, 12);
-  animateElementsIn(heroFooter.children, {
-    duration: 0.7,
-    distance: 10,
-    blur: 6,
-    delay: 0.2,
-    staggerAmount: 0.05,
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.add("hero-motion-active");
+    });
   });
 };
 
@@ -344,7 +353,7 @@ const initMotionRevealSystem = () => {
     });
   });
 
-  document.querySelectorAll(".why-grid, .thesis-grid, .lifecycle-grid").forEach((node) => {
+  document.querySelectorAll(".why-grid, .thesis-grid").forEach((node) => {
     bindMotionGroup(node, ":scope > *", {
       duration: 0.7,
       distance: 14,
@@ -392,18 +401,38 @@ const initMotionRevealSystem = () => {
   document.querySelectorAll(".incubator-statement").forEach((node) => {
     bindMotionGroup(node, ":scope", { duration: 0.7, distance: 10, blur: 6 });
   });
+
+  document.querySelectorAll(".events-hero__content").forEach((node) => {
+    bindMotionGroup(node, ":scope > *", {
+      duration: 0.78,
+      distance: 14,
+      blur: 7,
+      staggerAmount: 0.055,
+    });
+  });
+
+  document.querySelectorAll(".events-card, .lifecycle-stage").forEach((node) => {
+    bindMotionGroup(node, ":scope > *", {
+      amount: 0.18,
+      duration: 0.72,
+      distance: 12,
+      blur: 6,
+      staggerAmount: 0.045,
+    });
+  });
 };
 
 const initScrollStorytelling = () => {
   if (!gsapAvailable || reduceMotion()) return;
 
   preparePaintText();
+  const supportsFullNavyMount = !window.matchMedia("(max-width: 720px)").matches;
 
   if (heroAmbient) {
     gsapApi.to(heroAmbient, {
-      yPercent: 8,
-      scale: 1.04,
-      opacity: 0.24,
+      yPercent: -2,
+      scale: 0.985,
+      opacity: 0.035,
       ease: "none",
       scrollTrigger: {
         trigger: ".hero",
@@ -414,12 +443,63 @@ const initScrollStorytelling = () => {
     });
   }
 
+  if (heroHeadlineWrap) {
+    gsapApi.to(heroHeadlineWrap, {
+      yPercent: -2.2,
+      scale: 0.982,
+      transformOrigin: "50% 45%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.15,
+      },
+    });
+  }
+
+  if (heroFooter) {
+    gsapApi.to(heroFooter, {
+      yPercent: -4,
+      opacity: 0.68,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.15,
+      },
+    });
+  }
+
   document.querySelectorAll(".narrative-break").forEach((section) => {
     const paintTargets = section.querySelectorAll(".paint-text");
+    const missionPaintLines = [...section.querySelectorAll(".mission-paint-line")];
     const vector = section.querySelector("[data-vector-draw]");
     const vectorPath = vector?.querySelector("path");
     const inner = section.querySelector(".narrative-break__inner");
     const easeProgress = gsapApi.parseEase ? gsapApi.parseEase("power2.out") : (value) => value;
+
+    if (supportsFullNavyMount) {
+      gsapApi.fromTo(
+        section,
+        {
+          y: 52,
+          clipPath: "inset(6.5% 0% 0% 0%)",
+        },
+        {
+          y: 0,
+          clipPath: "inset(0% 0% 0% 0%)",
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 96%",
+            end: "top 42%",
+            scrub: 0.85,
+          },
+        }
+      );
+    }
 
     paintTargets.forEach((target) => target.style.setProperty("--paint-clip", "100%"));
 
@@ -433,6 +513,17 @@ const initScrollStorytelling = () => {
         const eased = easeProgress(normalized);
         const clipValue = `${(100 - eased * 100).toFixed(2)}%`;
         paintTargets.forEach((target) => target.style.setProperty("--paint-clip", clipValue));
+
+        if (missionPaintLines.length) {
+          const lineCount = missionPaintLines.length;
+          missionPaintLines.forEach((line, index) => {
+            const lineStart = index / (lineCount + 1.35);
+            const lineDuration = 1.95 / (lineCount + 1.35);
+            const lineProgress = Math.min(Math.max((normalized - lineStart) / lineDuration, 0), 1);
+            const lineClip = `${(100 - easeProgress(lineProgress) * 100).toFixed(2)}%`;
+            line.style.setProperty("--mission-paint-clip", lineClip);
+          });
+        }
       },
     });
 
@@ -660,10 +751,7 @@ const renderTeam = () => {
     const title = document.createElement("h3");
     title.textContent = group.label;
 
-    const count = document.createElement("p");
-    count.textContent = `${group.members.length} people`;
-
-    head.append(title, count);
+    head.append(title);
 
     const grid = document.createElement("div");
     grid.className = "team-group__grid";
@@ -786,6 +874,8 @@ const renderPortfolio = () => {
     button.className = "portfolio-filter";
     button.type = "button";
     button.dataset.portfolioFilter = category.key;
+    button.style.setProperty("--filter-accent", category.accent || "var(--text)");
+    button.style.setProperty("--filter-foreground", category.foreground || "var(--bg)");
     button.textContent = category.label;
     button.setAttribute("aria-pressed", String(category.key === activeCategory.key));
     if (category.key === activeCategory.key) {

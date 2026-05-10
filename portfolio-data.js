@@ -3,13 +3,15 @@ window.PORTFOLIO_DATA = {
     {
       key: "all",
       label: "All",
-      accent: "var(--sage)",
+      accent: "var(--text)",
+      foreground: "var(--bg)",
       companies: [],
     },
     {
       key: "life-science",
       label: "Life Science",
-      accent: "var(--lime)",
+      accent: "#dfe88f",
+      foreground: "var(--text)",
       companies: [
         {
           name: "ViroMissile",
@@ -24,7 +26,8 @@ window.PORTFOLIO_DATA = {
     {
       key: "technology",
       label: "Technology",
-      accent: "var(--sage)",
+      accent: "#aebdb8",
+      foreground: "var(--text)",
       companies: [
         {
           name: "Monarch Quantum",
@@ -43,7 +46,8 @@ window.PORTFOLIO_DATA = {
     {
       key: "healthcare",
       label: "Healthcare",
-      accent: "var(--orange)",
+      accent: "#f05a28",
+      foreground: "var(--bg)",
       companies: [
         {
           name: "Rad AI",
@@ -62,7 +66,8 @@ window.PORTFOLIO_DATA = {
     {
       key: "ai-applications",
       label: "AI Applications",
-      accent: "var(--blue-bright)",
+      accent: "#3e3ac3",
+      foreground: "var(--bg)",
       companies: [
         {
           name: "Illuno",
