@@ -16,10 +16,20 @@ window.PORTFOLIO_DATA = {
         {
           name: "ViroMissile",
           asset: "assets/portfolio/viromissile.svg",
+          ceo: {
+            name: "Nanhai Chen",
+            image: "assets/portfolio-ceos/nanhai-chen-tech.png",
+            summary: "Delivering quantum light engines at scale.",
+          },
         },
         {
           name: "MEVA",
           asset: "",
+          ceo: {
+            name: "Nanhai Chen",
+            image: "assets/portfolio-ceos/nanhai-chen-meva.png",
+            summary: "Delivering quantum light engines at scale.",
+          },
         },
       ],
     },
@@ -32,10 +42,20 @@ window.PORTFOLIO_DATA = {
         {
           name: "Monarch Quantum",
           asset: "assets/portfolio/monarch-quantum.svg",
+          ceo: {
+            name: "Nanhai Chen",
+            image: "assets/portfolio-ceos/nanhai-chen-tech.png",
+            summary: "Delivering quantum light engines at scale.",
+          },
         },
         {
           name: "Live Data Technologies",
           asset: "assets/portfolio/live-data-technologies.svg",
+          ceo: {
+            name: "J. Scott Hamilton",
+            image: "assets/portfolio-ceos/j-scott-hamilton.png",
+            summary: "Delivering quantum light engines at scale.",
+          },
         },
         {
           name: "Stealth",
@@ -52,14 +72,30 @@ window.PORTFOLIO_DATA = {
         {
           name: "Rad AI",
           asset: "assets/portfolio/rad-ai.svg",
+          ceo: {
+            name: "Doktor Gurson",
+            image: "assets/portfolio-ceos/doktor-gurson.png",
+            summary: "Empowering physicians and health systems with AI.",
+          },
         },
         {
           name: "Ultrasound AI",
           asset: "assets/portfolio/ultrasound-ai.svg",
+          ceo: {
+            name: "Michael S. Davis",
+            image: "assets/portfolio-ceos/michael-s-davis.png",
+            summary: "Delivering quantum light engines at scale.",
+          },
         },
         {
           name: "MedWatch Technologies",
           asset: "assets/portfolio/medwatch-technologies.svg",
+          ceo: {
+            name: "Sam Zaidspiner",
+            image: "assets/portfolio-ceos/sam-zaidspiner.png",
+            summary:
+              "First needle-free glucose biosensor and health coaching app turning glucose insights into healthier choices.",
+          },
         },
       ],
     },
@@ -72,10 +108,20 @@ window.PORTFOLIO_DATA = {
         {
           name: "Illuno",
           asset: "assets/portfolio/illuno.svg",
+          ceo: {
+            name: "Craig R. Peus",
+            image: "assets/portfolio-ceos/craig-r-peus.png",
+            summary: "Platform connecting businesses with verified local off-duty officers.",
+          },
         },
         {
           name: "SeedsMatch",
           asset: "assets/portfolio/seedsmatch.svg",
+          ceo: {
+            name: "Nanhai Chen",
+            image: "assets/portfolio-ceos/nanhai-chen-seedsmatch.png",
+            summary: "Recruitment platform with AI agents for mass hiring.",
+          },
         },
       ],
     },

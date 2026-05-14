@@ -1847,12 +1847,11 @@ body.hero-motion-active .hero__ambient {
 .portfolio-card {
   grid-column: span 3;
   position: relative;
+  isolation: isolate;
   display: grid;
   gap: 1rem;
   padding: var(--card-pad);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--card-accent, var(--sage)) 16%, transparent), transparent 40%),
-    linear-gradient(180deg, rgba(242, 241, 240, 0.98), rgba(242, 241, 240, 0.9));
+  background: rgba(242, 241, 240, 0.9);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
   transition:
@@ -1884,9 +1883,16 @@ body.hero-motion-active .hero__ambient {
 
 .portfolio-card:hover,
 .portfolio-card:focus-within {
+  z-index: 8;
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--card-accent, var(--sage)) 54%, rgba(42, 40, 41, 0.18));
   box-shadow: var(--shadow-hover);
+}
+
+.portfolio-card:focus-visible {
+  z-index: 8;
+  outline: 1px solid color-mix(in srgb, var(--card-accent, var(--sage)) 64%, var(--text));
+  outline-offset: 0.18rem;
 }
 
 .portfolio-card:hover .portfolio-card__visual img,
@@ -1898,9 +1904,7 @@ body.hero-motion-active .hero__ambient {
   min-height: 7.5rem;
   display: grid;
   place-items: center;
-  background:
-    linear-gradient(180deg, rgba(242, 241, 240, 0.82), rgba(242, 241, 240, 0.42)),
-    color-mix(in srgb, var(--card-accent, var(--sage)) 9%, transparent);
+  background: rgba(242, 241, 240, 0.66);
   border: 1px solid color-mix(in srgb, var(--card-accent, var(--sage)) 22%, rgba(42, 40, 41, 0.08));
 }
 
@@ -1935,6 +1939,83 @@ body.hero-motion-active .hero__ambient {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--card-accent, var(--sage)) 62%, var(--text));
+}
+
+.portfolio-card__ceo {
+  position: absolute;
+  left: var(--card-pad);
+  right: var(--card-pad);
+  bottom: var(--card-pad);
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 4.3rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.72rem;
+  background:
+    linear-gradient(135deg, rgba(215, 221, 217, 0.44), rgba(242, 241, 240, 0.94) 48%),
+    rgba(242, 241, 240, 0.94);
+  border: 1px solid color-mix(in srgb, var(--card-accent, var(--sage)) 30%, var(--line));
+  box-shadow: 0 18px 44px rgba(16, 31, 59, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.7rem);
+  transition:
+    opacity var(--motion-base) var(--ease-premium),
+    transform var(--motion-base) var(--ease-premium),
+    border-color var(--motion-fast) var(--ease-premium);
+}
+
+.portfolio-card:hover .portfolio-card__ceo,
+.portfolio-card:focus-within .portfolio-card__ceo,
+.portfolio-card:focus-visible .portfolio-card__ceo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-card__ceo-media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface-strong);
+  border: 1px solid rgba(42, 40, 41, 0.08);
+}
+
+.portfolio-card__ceo-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.portfolio-card__ceo-body {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.portfolio-card__ceo-role {
+  color: rgba(42, 40, 41, 0.48);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.portfolio-card__ceo-body strong {
+  color: var(--text);
+  font-size: 0.86rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.portfolio-card__ceo-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  color: rgba(42, 40, 41, 0.64);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .exits-block {

@@ -1011,7 +1011,50 @@ const createPortfolioCard = (company) => {
   category.textContent = company.categoryLabel;
 
   meta.append(name, category);
-  card.append(visual, meta);
+
+  if (company.ceo) {
+    const ceoId = `portfolio-ceo-${company.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`;
+    card.tabIndex = 0;
+    card.setAttribute("aria-describedby", ceoId);
+
+    const ceoCard = document.createElement("aside");
+    ceoCard.className = "portfolio-card__ceo";
+    ceoCard.id = ceoId;
+    ceoCard.setAttribute("aria-label", `${company.name} CEO`);
+
+    const ceoMedia = document.createElement("span");
+    ceoMedia.className = "portfolio-card__ceo-media";
+
+    if (company.ceo.image) {
+      const ceoImage = document.createElement("img");
+      ceoImage.src = company.ceo.image;
+      ceoImage.alt = company.ceo.name;
+      ceoImage.loading = "lazy";
+      ceoImage.decoding = "async";
+      ceoMedia.append(ceoImage);
+    }
+
+    const ceoBody = document.createElement("span");
+    ceoBody.className = "portfolio-card__ceo-body";
+
+    const ceoRole = document.createElement("span");
+    ceoRole.className = "portfolio-card__ceo-role";
+    ceoRole.textContent = "CEO";
+
+    const ceoName = document.createElement("strong");
+    ceoName.textContent = company.ceo.name;
+
+    const ceoSummary = document.createElement("span");
+    ceoSummary.className = "portfolio-card__ceo-summary";
+    ceoSummary.textContent = company.ceo.summary;
+
+    ceoBody.append(ceoRole, ceoName, ceoSummary);
+    ceoCard.append(ceoMedia, ceoBody);
+    card.append(visual, meta, ceoCard);
+  } else {
+    card.append(visual, meta);
+  }
+
   return card;
 };
 
