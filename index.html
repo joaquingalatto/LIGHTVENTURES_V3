@@ -92,6 +92,10 @@
                     <span class="hero__headline-mark" aria-hidden="true">
                       <svg viewBox="0 0 150 129" focusable="false">
                         <path
+                          class="hero__headline-mark-subfill"
+                          d="M2.08342 0.320801L63.4764 62.5215L0 128.077H59.7966L124.842 60.6276L64.9375 0.320801H2.08342Z"
+                        />
+                        <path
                           class="hero__headline-mark-fill"
                           d="M2.08342 0.320801L63.4764 62.5215L0 128.077H59.7966L124.842 60.6276L64.9375 0.320801H2.08342Z"
                         />
@@ -128,43 +132,51 @@
         </div>
       </section>
 
-      <section class="section" id="why">
+      <section class="section section--love" id="why">
         <div class="shell">
           <div class="frame">
-            <div class="video-section">
-              <div class="video-section__head reveal">
-                <h2>See the vision in context.</h2>
+            <div class="love-section">
+              <div class="section-head section-head--love reveal">
+                <h2>Feeling the love.</h2>
               </div>
 
-              <div class="video-section__media reveal">
-                <div class="video-section__shell">
-                  <div class="video-section__controls" aria-label="Video controls">
-                    <button class="video-control" type="button" data-video-play-toggle>
-                      Pause Film
-                    </button>
-                    <button class="video-control" type="button" data-video-audio-toggle>
-                      Sound Off
-                    </button>
+              <div class="love-grid">
+                <article class="love-card reveal">
+                  <div class="love-card__meta">
+                    <span>01</span>
+                    <p>Founders</p>
                   </div>
+                  <div class="love-card__body">
+                    <h3>Why founders love us.</h3>
+                    <ul>
+                      <li>
+                        Empathy, experience, and expertise as operators navigating all stages of
+                        the business lifecycle.
+                      </li>
+                      <li>We do the work, earn our seat at the table, and add value.</li>
+                    </ul>
+                  </div>
+                </article>
 
-                  <div class="video-section__viewport">
-                    <video
-                      class="video-section__player"
-                      data-intro-video
-                      autoplay
-                      muted
-                      loop
-                      playsinline
-                      preload="metadata"
-                      aria-label="Light Ventures introduction film"
-                    >
-                      <source
-                        src="https://media.githubusercontent.com/media/joaquingalatto/LIGHTVENTURES_V3/main/assets/light-ventures-film.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
+                <article class="love-card love-card--investors reveal">
+                  <div class="love-card__meta">
+                    <span>02</span>
+                    <p>Investors</p>
                   </div>
-                </div>
+                  <div class="love-card__body">
+                    <h3>Why investors love us.</h3>
+                    <ul>
+                      <li>
+                        Deep networks, built on trust, offering unique, high-demand investment
+                        opportunities.
+                      </li>
+                      <li>
+                        Leveraging an SPV, deal-by-deal structure to give investors choice and
+                        match them with their interests, expertise, and passion.
+                      </li>
+                    </ul>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
@@ -175,6 +187,9 @@
         <div class="shell">
           <div class="frame frame--dark">
             <div class="narrative-break__inner reveal">
+              <div class="mission-title">
+                <h2>Our Mission</h2>
+              </div>
               <h2 class="mission-statement">
                 <span>To illuminate</span>
                 <span>the world,</span>
@@ -184,6 +199,59 @@
                 <span class="mission-statement__muted">through</span>
                 <span class="mission-statement__muted">innovation.</span>
               </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vision">
+        <div class="shell">
+          <div class="frame">
+            <div class="video-section">
+              <div class="video-section__head reveal">
+                <h2>See the vision in context.</h2>
+              </div>
+
+              <div class="video-section__media reveal">
+                <div class="video-section__grid">
+                  <article class="video-card video-card--active" tabindex="0">
+                    <div class="video-card__viewport">
+                      <video
+                        class="video-section__player"
+                        data-intro-video
+                        data-hover-video
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        aria-label="Light Ventures introduction film"
+                      >
+                        <source
+                          src="https://media.githubusercontent.com/media/joaquingalatto/LIGHTVENTURES_V3/main/assets/light-ventures-film.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="video-card__meta">
+                      <p>01</p>
+                      <h3>Light Ventures introduction film</h3>
+                      <span>Hover to play</span>
+                    </div>
+                  </article>
+
+                  <article class="video-card video-card--placeholder" aria-label="Second video placeholder">
+                    <div class="video-card__placeholder-mark" aria-hidden="true"></div>
+                    <div class="video-card__meta">
+                      <p>02</p>
+                      <h3>Second film placeholder</h3>
+                      <span>Coming soon</span>
+                    </div>
+                    <p class="video-card__placeholder-copy">
+                      Reserved for the next founder story, workshop cut, or portfolio perspective.
+                    </p>
+                  </article>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -342,7 +410,7 @@
           <div class="frame">
             <div class="section-head reveal">
               <div>
-                <h2>Founders, venture partners, and advisors.</h2>
+                <h2>Our Team</h2>
                 <p>
                   Light Ventures operates with founder empathy and a deliberately hands-on network
                   of operators, investors, and specialists.
@@ -376,7 +444,7 @@
         <div class="shell">
           <div class="frame">
             <div class="section-head reveal">
-              <h2>The future we are investing in.</h2>
+              <h2>Portfolio</h2>
               <p>
                 Life Science. Technology. Healthcare. AI Applications.
               </p>
@@ -405,7 +473,7 @@
         <div class="shell">
           <div class="frame">
             <div class="section-head reveal">
-              <h2>We don’t just fund the future. We build it.</h2>
+              <h2>Incubator</h2>
             </div>
 
             <div class="incubator-layout">
@@ -455,7 +523,7 @@
           <div class="frame">
             <div class="contact-callout reveal">
               <div>
-                <h2>Serious founders, aligned investors, and meaningful partnerships.</h2>
+                <h2>Get Involved</h2>
               </div>
               <div class="contact-callout__actions">
                 <p>

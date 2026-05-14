@@ -279,6 +279,7 @@ const preparePaintText = () => {
   document.querySelectorAll(".narrative-break h2, .narrative-break__support").forEach((element) => {
     if (element.dataset.paintReady === "true") return;
     if (element.classList.contains("mission-statement")) return;
+    if (element.closest(".mission-title")) return;
     if (element.closest(".narrative-break--advantage")) return;
 
     const text = element.textContent.trim();
@@ -408,6 +409,15 @@ const initMotionRevealSystem = () => {
       distance: 14,
       blur: 7,
       staggerAmount: 0.055,
+    });
+  });
+
+  document.querySelectorAll(".events-gallery__head, .events-carousel").forEach((node) => {
+    bindMotionGroup(node, ":scope > *", {
+      duration: 0.72,
+      distance: 12,
+      blur: 6,
+      staggerAmount: 0.045,
     });
   });
 
@@ -659,6 +669,152 @@ const initVideoControls = () => {
       button.disabled = true;
       button.textContent = "Audio Unavailable";
     });
+  });
+};
+
+const initHoverVideos = () => {
+  const hoverVideos = [...document.querySelectorAll("[data-hover-video]")];
+  if (!hoverVideos.length) return;
+
+  hoverVideos.forEach((video) => {
+    const card = video.closest(".video-card");
+    if (!card) return;
+
+    const playPreview = async () => {
+      video.muted = true;
+      try {
+        await video.play();
+      } catch (error) {
+        // Browser autoplay policies can still block previews in edge cases.
+      }
+    };
+
+    const stopPreview = () => {
+      video.pause();
+      video.currentTime = 0;
+    };
+
+    card.addEventListener("mouseenter", playPreview);
+    card.addEventListener("focusin", playPreview);
+    card.addEventListener("mouseleave", stopPreview);
+    card.addEventListener("focusout", stopPreview);
+  });
+};
+
+const initEventsCarousel = () => {
+  document.querySelectorAll("[data-events-carousel]").forEach((carousel) => {
+    const track = carousel.querySelector("[data-events-carousel-track]");
+    const realSlides = [...carousel.querySelectorAll("[data-events-slide]")];
+    const prevButton = carousel.querySelector("[data-events-prev]");
+    const nextButton = carousel.querySelector("[data-events-next]");
+    const counter = carousel.querySelector("[data-events-counter]");
+
+    if (!track || !realSlides.length) return;
+
+    const cloneCount = Math.min(2, realSlides.length);
+    if (track.dataset.eventsCarouselReady !== "true" && cloneCount) {
+      const beforeClones = realSlides.slice(-cloneCount).map((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.dataset.eventsClone = "true";
+        clone.setAttribute("aria-hidden", "true");
+        return clone;
+      });
+      const afterClones = realSlides.slice(0, cloneCount).map((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.dataset.eventsClone = "true";
+        clone.setAttribute("aria-hidden", "true");
+        return clone;
+      });
+
+      track.prepend(...beforeClones);
+      track.append(...afterClones);
+      track.dataset.eventsCarouselReady = "true";
+    }
+
+    const slides = [...track.querySelectorAll("[data-events-slide]")];
+
+    let activeIndex = 0;
+    let activeSlideIndex = cloneCount;
+    let syncFrame = 0;
+
+    const formatIndex = (value) => String(value + 1).padStart(2, "0");
+    const getRealIndex = (slideIndex) =>
+      (slideIndex - cloneCount + realSlides.length) % realSlides.length;
+
+    const getCurrentSlideIndex = () => {
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      return slides.reduce(
+        (closestIndex, slide, index) => {
+          const slideRect = slide.getBoundingClientRect();
+          const slideCenter = slideRect.left + slideRect.width / 2;
+          const distance = Math.abs(trackCenter - slideCenter);
+          const closestSlide = slides[closestIndex];
+          const closestRect = closestSlide.getBoundingClientRect();
+          const closestCenter = closestRect.left + closestRect.width / 2;
+          return distance < Math.abs(trackCenter - closestCenter) ? index : closestIndex;
+        },
+        0
+      );
+    };
+
+    const scrollToSlide = (slideIndex, behavior = reduceMotion() ? "auto" : "smooth") => {
+      slides[slideIndex]?.scrollIntoView({
+        behavior,
+        block: "nearest",
+        inline: "center",
+      });
+    };
+
+    const normalizeEdgeSlide = () => {
+      if (activeSlideIndex < cloneCount) {
+        scrollToSlide(activeSlideIndex + realSlides.length, "auto");
+      }
+
+      if (activeSlideIndex >= cloneCount + realSlides.length) {
+        scrollToSlide(activeSlideIndex - realSlides.length, "auto");
+      }
+    };
+
+    const syncCarousel = () => {
+      activeSlideIndex = getCurrentSlideIndex();
+      activeIndex = getRealIndex(activeSlideIndex);
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("is-active", index === activeSlideIndex);
+      });
+
+      if (counter) {
+        counter.textContent = `${formatIndex(activeIndex)} / ${String(realSlides.length).padStart(2, "0")}`;
+      }
+
+      window.clearTimeout(track._eventsCarouselNormalizeTimer);
+      track._eventsCarouselNormalizeTimer = window.setTimeout(normalizeEdgeSlide, 140);
+    };
+
+    const scheduleSync = () => {
+      window.cancelAnimationFrame(syncFrame);
+      syncFrame = window.requestAnimationFrame(syncCarousel);
+    };
+
+    prevButton?.addEventListener("click", () => scrollToSlide(activeSlideIndex - 1));
+    nextButton?.addEventListener("click", () => scrollToSlide(activeSlideIndex + 1));
+
+    track.addEventListener("scroll", scheduleSync, { passive: true });
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollToSlide(activeSlideIndex - 1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollToSlide(activeSlideIndex + 1);
+      }
+    });
+    window.addEventListener("resize", scheduleSync);
+
+    requestAnimationFrame(() => scrollToSlide(cloneCount, "auto"));
+    syncCarousel();
   });
 };
 
@@ -1099,6 +1255,8 @@ runInit("renderExits", renderExits);
 runInit("initNavigation", initNavigation);
 runInit("initHeader", initHeader);
 runInit("initVideoControls", initVideoControls);
+runInit("initHoverVideos", initHoverVideos);
+runInit("initEventsCarousel", initEventsCarousel);
 runInit("initContactSheet", initContactSheet);
 runInit("initContactForm", initContactForm);
 runInit("initTeamInteractions", initTeamInteractions);
