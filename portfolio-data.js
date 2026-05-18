@@ -15,7 +15,7 @@ window.PORTFOLIO_DATA = {
       companies: [
         {
           name: "ViroMissile",
-          asset: "assets/portfolio/viromissile.svg",
+          asset: "assets/portfolio/viromissile.png",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-tech.png",
@@ -24,7 +24,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           name: "MEVA",
-          asset: "",
+          asset: "assets/portfolio/meva.png",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-meva.png",
@@ -41,7 +41,7 @@ window.PORTFOLIO_DATA = {
       companies: [
         {
           name: "Monarch Quantum",
-          asset: "assets/portfolio/monarch-quantum.svg",
+          asset: "assets/portfolio/monarch-quantum.png",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-tech.png",
@@ -50,7 +50,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           name: "Live Data Technologies",
-          asset: "assets/portfolio/live-data-technologies.svg",
+          asset: "assets/portfolio/live-data-technologies.png",
           ceo: {
             name: "J. Scott Hamilton",
             image: "assets/portfolio-ceos/j-scott-hamilton.png",
@@ -71,7 +71,7 @@ window.PORTFOLIO_DATA = {
       companies: [
         {
           name: "Rad AI",
-          asset: "assets/portfolio/rad-ai.svg",
+          asset: "assets/portfolio/rad-ai.png",
           ceo: {
             name: "Doktor Gurson",
             image: "assets/portfolio-ceos/doktor-gurson.png",
@@ -80,7 +80,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           name: "Ultrasound AI",
-          asset: "assets/portfolio/ultrasound-ai.svg",
+          asset: "assets/portfolio/ultrasound-ai.png",
           ceo: {
             name: "Michael S. Davis",
             image: "assets/portfolio-ceos/michael-s-davis.png",
@@ -89,7 +89,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           name: "MedWatch Technologies",
-          asset: "assets/portfolio/medwatch-technologies.svg",
+          asset: "assets/portfolio/medwatch-technologies.png",
           ceo: {
             name: "Sam Zaidspiner",
             image: "assets/portfolio-ceos/sam-zaidspiner.png",
@@ -107,7 +107,7 @@ window.PORTFOLIO_DATA = {
       companies: [
         {
           name: "Illuno",
-          asset: "assets/portfolio/illuno.svg",
+          asset: "assets/portfolio/illuno.png",
           ceo: {
             name: "Craig R. Peus",
             image: "assets/portfolio-ceos/craig-r-peus.png",
@@ -116,7 +116,7 @@ window.PORTFOLIO_DATA = {
         },
         {
           name: "SeedsMatch",
-          asset: "assets/portfolio/seedsmatch.svg",
+          asset: "assets/portfolio/seedsmatch.png",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-seedsmatch.png",
