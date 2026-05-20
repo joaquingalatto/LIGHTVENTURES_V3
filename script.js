@@ -681,17 +681,25 @@ const initHoverVideos = () => {
     if (!card) return;
 
     const playPreview = async () => {
-      video.muted = true;
+      video.muted = false;
+      video.volume = 1;
       try {
         await video.play();
       } catch (error) {
-        // Browser autoplay policies can still block previews in edge cases.
+        // Some browsers block hover-initiated audio until the user interacts with the page.
+        video.muted = true;
+        try {
+          await video.play();
+        } catch (mutedError) {
+          // Browser autoplay policies can still block previews in edge cases.
+        }
       }
     };
 
     const stopPreview = () => {
       video.pause();
       video.currentTime = 0;
+      video.muted = true;
     };
 
     card.addEventListener("mouseenter", playPreview);

@@ -107,9 +107,6 @@
               </div>
 
               <div class="hero__footer">
-                <p class="hero__support">
-                  Empathy, experience, and expertise across the business lifecycle.
-                </p>
                 <a
                   class="button button--dark hero__cta"
                   href="mailto:info@lightventures.net?subject=Get%20Involved%20%7C%20Light%20Ventures"
@@ -230,16 +227,25 @@
                     </div>
                   </article>
 
-                  <article class="video-card video-card--placeholder" aria-label="Second video placeholder">
-                    <div class="video-card__placeholder-mark" aria-hidden="true"></div>
+                  <article class="video-card" tabindex="0">
+                    <div class="video-card__viewport">
+                      <video
+                        class="video-section__player"
+                        data-hover-video
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        aria-label="Doug Light Ventures film"
+                      >
+                        <source src="/assets/clip-doug.mp4" type="video/mp4" />
+                      </video>
+                    </div>
                     <div class="video-card__meta">
                       <p>02</p>
-                      <h3>Second film placeholder</h3>
-                      <span>Coming soon</span>
+                      <h3>Doug on the Light Ventures approach</h3>
+                      <span>Hover to play</span>
                     </div>
-                    <p class="video-card__placeholder-copy">
-                      Reserved for the next founder story, workshop cut, or portfolio perspective.
-                    </p>
                   </article>
                   </div>
               </div>
@@ -394,7 +400,7 @@
       <section class="section section--team" id="team">
         <div class="shell">
           <div class="frame">
-            <div class="section-head reveal">
+            <div class="section-head section-head--team reveal">
               <div>
                 <h2>Team</h2>
                 <p>
@@ -446,17 +452,13 @@
                   loop
                   playsinline
                   preload="metadata"
-                  aria-label="Light Ventures partnership film"
+                  aria-label="David Park partnership film"
                 >
-                  <source
-                    src="https://media.githubusercontent.com/media/joaquingalatto/LIGHTVENTURES_V3/main/assets/light-ventures-film.mp4"
-                    type="video/mp4"
-                  />
+                  <source src="/assets/clip-davidpark.mp4" type="video/mp4" />
                 </video>
               </div>
               <div class="video-card__meta team-video-card__meta">
-                <p>Film</p>
-                <h3>Light Ventures in motion</h3>
+                <h3>David Park on aligned partnerships</h3>
                 <span>Hover to play</span>
               </div>
             </article>
@@ -467,25 +469,19 @@
       <section class="section section--portfolio" id="portfolio">
         <div class="shell">
           <div class="frame">
-            <div class="section-head reveal">
+            <div class="section-head section-head--portfolio reveal">
               <h2>Portfolio</h2>
-              <p>
-                Life Science. Technology. Healthcare. AI Applications.
-              </p>
             </div>
 
             <div class="portfolio-toolbar reveal">
               <div class="portfolio-filters" data-portfolio-filters></div>
-              <p class="portfolio-footnote">
-                * Includes Light Ventures, SPVs, and other recent venture investments.
-              </p>
             </div>
 
             <div class="portfolio-grid" data-portfolio-grid></div>
 
             <div class="exits-block reveal">
               <div class="exits-block__head">
-                <h3>Notable exits</h3>
+                <h2>Notable exits</h2>
               </div>
               <div class="exits-grid" data-exits-grid></div>
             </div>
