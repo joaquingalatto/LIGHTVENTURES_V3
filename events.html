@@ -52,7 +52,7 @@
             <a href="/#team">Team</a>
             <a href="/#portfolio">Portfolio</a>
             <a href="/#incubator">Incubator</a>
-            <a href="/events" aria-current="page">Events</a>
+            <span class="site-nav__current" aria-current="page">Events</span>
             <a
               class="button button--dark site-nav__cta"
               href="mailto:info@lightventures.net?subject=Get%20Involved%20%7C%20Light%20Ventures"
@@ -77,7 +77,7 @@
           <div class="frame">
             <div class="events-hero__content reveal">
               <h1>Events</h1>
-              <p class="events-hero__lede">PLNU History</p>
+              <p class="events-hero__lede">Innovation Workshops</p>
               <p class="events-hero__intro">
                 A look at the early relationships, workshops, and outcomes that helped shape the
                 path toward Light Ventures.
@@ -91,11 +91,27 @@
         <div class="shell">
           <div class="frame">
             <div class="events-stack__head">
-              <h2 id="events-history-title">Innovation Workshop history</h2>
+              <h2 id="events-history-title">Innovation Workshop History</h2>
             </div>
 
             <div class="events-stack" aria-label="PLNU and Innovation Workshop history">
-              <article class="events-card reveal" style="--event-index: 0">
+              <div
+                class="stack-context stack-context--events reveal"
+                data-stack-context="events"
+                aria-label="Event history context"
+              >
+                <span class="is-active" data-stack-context-item="0" aria-current="true">2014</span>
+                <span data-stack-context-item="1">2016&ndash;2020</span>
+                <span data-stack-context-item="2">By 2023</span>
+                <span data-stack-context-item="3">2024</span>
+              </div>
+
+              <article
+                class="events-card reveal"
+                data-stack-card="events"
+                data-stack-index="0"
+                style="--event-index: 0"
+              >
                 <div class="events-card__meta">
                   <span class="events-card__number">01</span>
                   <p>2014</p>
@@ -109,7 +125,12 @@
                 </div>
               </article>
 
-              <article class="events-card reveal" style="--event-index: 1">
+              <article
+                class="events-card reveal"
+                data-stack-card="events"
+                data-stack-index="1"
+                style="--event-index: 1"
+              >
                 <div class="events-card__meta">
                   <span class="events-card__number">02</span>
                   <p>2016&ndash;2020</p>
@@ -123,7 +144,12 @@
                 </div>
               </article>
 
-              <article class="events-card reveal" style="--event-index: 2">
+              <article
+                class="events-card reveal"
+                data-stack-card="events"
+                data-stack-index="2"
+                style="--event-index: 2"
+              >
                 <div class="events-card__meta">
                   <span class="events-card__number">03</span>
                   <p>By 2023</p>
@@ -138,7 +164,12 @@
                 </div>
               </article>
 
-              <article class="events-card reveal" style="--event-index: 3">
+              <article
+                class="events-card reveal"
+                data-stack-card="events"
+                data-stack-index="3"
+                style="--event-index: 3"
+              >
                 <div class="events-card__meta">
                   <span class="events-card__number">04</span>
                   <p>2024</p>

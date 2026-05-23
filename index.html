@@ -314,7 +314,23 @@
             </div>
 
             <div class="lifecycle-grid lifecycle-stack" aria-label="Company lifecycle participation stages">
-              <article class="lifecycle-stage reveal" style="--event-index: 0">
+              <div
+                class="stack-context stack-context--lifecycle reveal"
+                data-stack-context="lifecycle"
+                aria-label="Lifecycle stage context"
+              >
+                <span class="is-active" data-stack-context-item="0" aria-current="true">Early Stage</span>
+                <span data-stack-context-item="1">Growth Stage</span>
+                <span data-stack-context-item="2">Late Stage</span>
+                <span data-stack-context-item="3">Exit / Liquidity</span>
+              </div>
+
+              <article
+                class="lifecycle-stage reveal"
+                data-stack-card="lifecycle"
+                data-stack-index="0"
+                style="--event-index: 0"
+              >
                 <div class="lifecycle-stage__meta">
                   <p class="lifecycle-stage__index">01</p>
                 </div>
@@ -328,7 +344,12 @@
                 </div>
               </article>
 
-              <article class="lifecycle-stage reveal" style="--event-index: 1">
+              <article
+                class="lifecycle-stage reveal"
+                data-stack-card="lifecycle"
+                data-stack-index="1"
+                style="--event-index: 1"
+              >
                 <div class="lifecycle-stage__meta">
                   <p class="lifecycle-stage__index">02</p>
                 </div>
@@ -342,7 +363,12 @@
                 </div>
               </article>
 
-              <article class="lifecycle-stage reveal" style="--event-index: 2">
+              <article
+                class="lifecycle-stage reveal"
+                data-stack-card="lifecycle"
+                data-stack-index="2"
+                style="--event-index: 2"
+              >
                 <div class="lifecycle-stage__meta">
                   <p class="lifecycle-stage__index">03</p>
                 </div>
@@ -356,7 +382,12 @@
                 </div>
               </article>
 
-              <article class="lifecycle-stage reveal" style="--event-index: 3">
+              <article
+                class="lifecycle-stage reveal"
+                data-stack-card="lifecycle"
+                data-stack-index="3"
+                style="--event-index: 3"
+              >
                 <div class="lifecycle-stage__meta">
                   <p class="lifecycle-stage__index">04</p>
                 </div>

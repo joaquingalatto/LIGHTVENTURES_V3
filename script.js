@@ -709,6 +709,76 @@ const initHoverVideos = () => {
   });
 };
 
+const initStackContextIndicators = () => {
+  const contexts = [...document.querySelectorAll("[data-stack-context]")];
+  if (!contexts.length) return;
+
+  let frame = 0;
+
+  const getStackCards = (stackName) =>
+    [...document.querySelectorAll("[data-stack-card]")].filter(
+      (card) => card.dataset.stackCard === stackName
+    );
+
+  const setActiveContextItem = (context, activeIndex) => {
+    context.querySelectorAll("[data-stack-context-item]").forEach((item) => {
+      const isActive = Number(item.dataset.stackContextItem) === activeIndex;
+      item.classList.toggle("is-active", isActive);
+
+      if (isActive) {
+        item.setAttribute("aria-current", "true");
+      } else {
+        item.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const getActiveStackIndex = (stackName) => {
+    const cards = getStackCards(stackName);
+    if (!cards.length) return 0;
+
+    const activationLine = Math.min(window.innerHeight * 0.42, 360);
+    let activeIndex = Number(cards[0].dataset.stackIndex || 0);
+    let nearestIndex = activeIndex;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+    let hasMountedCard = false;
+
+    cards.forEach((card, orderIndex) => {
+      const rect = card.getBoundingClientRect();
+      const cardIndex = Number(card.dataset.stackIndex || orderIndex);
+      const distance = Math.abs(rect.top - activationLine);
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = cardIndex;
+      }
+
+      if (rect.top <= activationLine && rect.bottom > activationLine) {
+        activeIndex = cardIndex;
+        hasMountedCard = true;
+      }
+    });
+
+    return hasMountedCard ? activeIndex : nearestIndex;
+  };
+
+  const updateContexts = () => {
+    frame = 0;
+    contexts.forEach((context) => {
+      setActiveContextItem(context, getActiveStackIndex(context.dataset.stackContext));
+    });
+  };
+
+  const scheduleUpdate = () => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(updateContexts);
+  };
+
+  updateContexts();
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate);
+};
+
 const initEventsCarousel = () => {
   document.querySelectorAll("[data-events-carousel]").forEach((carousel) => {
     const track = carousel.querySelector("[data-events-carousel-track]");
@@ -1307,6 +1377,7 @@ runInit("initNavigation", initNavigation);
 runInit("initHeader", initHeader);
 runInit("initVideoControls", initVideoControls);
 runInit("initHoverVideos", initHoverVideos);
+runInit("initStackContextIndicators", initStackContextIndicators);
 runInit("initEventsCarousel", initEventsCarousel);
 runInit("initContactSheet", initContactSheet);
 runInit("initContactForm", initContactForm);
