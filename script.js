@@ -710,15 +710,12 @@ const initHoverVideos = () => {
 };
 
 const initStackContextIndicators = () => {
-  const contexts = [...document.querySelectorAll("[data-stack-context]")];
-  if (!contexts.length) return;
-
+  const decks = [...document.querySelectorAll("[data-stacked-card-deck]")];
+  if (!decks.length) return;
   let frame = 0;
 
-  const getStackCards = (stackName) =>
-    [...document.querySelectorAll("[data-stack-card]")].filter(
-      (card) => card.dataset.stackCard === stackName
-    );
+  const getDeckContext = (deck) => deck.querySelector("[data-stack-context]");
+  const getDeckCards = (deck) => [...deck.querySelectorAll("[data-stack-card]")];
 
   const setActiveContextItem = (context, activeIndex) => {
     context.querySelectorAll("[data-stack-context-item]").forEach((item) => {
@@ -733,11 +730,17 @@ const initStackContextIndicators = () => {
     });
   };
 
-  const getActiveStackIndex = (stackName) => {
-    const cards = getStackCards(stackName);
+  const measureDeck = (deck) => {
+    const context = getDeckContext(deck);
+    if (!context) return;
+
+    deck.style.setProperty("--stack-index-height", `${context.offsetHeight}px`);
+  };
+
+  const getActiveStackIndex = (deck) => {
+    const cards = getDeckCards(deck);
     if (!cards.length) return 0;
 
-    const activationLine = Math.min(window.innerHeight * 0.42, 360);
     let activeIndex = Number(cards[0].dataset.stackIndex || 0);
     let nearestIndex = activeIndex;
     let nearestDistance = Number.POSITIVE_INFINITY;
@@ -746,14 +749,15 @@ const initStackContextIndicators = () => {
     cards.forEach((card, orderIndex) => {
       const rect = card.getBoundingClientRect();
       const cardIndex = Number(card.dataset.stackIndex || orderIndex);
-      const distance = Math.abs(rect.top - activationLine);
+      const stickyTop = Number.parseFloat(window.getComputedStyle(card).top) || 0;
+      const distance = Math.abs(rect.top - stickyTop);
 
       if (distance < nearestDistance) {
         nearestDistance = distance;
         nearestIndex = cardIndex;
       }
 
-      if (rect.top <= activationLine && rect.bottom > activationLine) {
+      if (rect.top <= stickyTop + 1) {
         activeIndex = cardIndex;
         hasMountedCard = true;
       }
@@ -762,10 +766,45 @@ const initStackContextIndicators = () => {
     return hasMountedCard ? activeIndex : nearestIndex;
   };
 
+  const syncContentShift = (deck, activeIndex) => {
+    const context = getDeckContext(deck);
+    const cards = getDeckCards(deck);
+    const activeCard = cards.find(
+      (card, orderIndex) => Number(card.dataset.stackIndex || orderIndex) === activeIndex
+    );
+
+    if (!context || !activeCard) return;
+
+    const contextRect = context.getBoundingClientRect();
+    const contentNodes = [
+      ...activeCard.querySelectorAll(".lifecycle-stage__body, .events-card__body"),
+    ];
+
+    if (!contentNodes.length) return;
+
+    const currentShift =
+      Number.parseFloat(window.getComputedStyle(activeCard).getPropertyValue("--stack-content-shift")) || 0;
+    const contentTop = Math.min(
+      ...contentNodes.map((node) => node.getBoundingClientRect().top - currentShift)
+    );
+    const safeTop = contextRect.bottom + 18;
+    const overlap = Math.max(0, safeTop - contentTop);
+    const shift = Math.min(overlap, 150);
+
+    cards.forEach((card) => card.style.setProperty("--stack-content-shift", "0px"));
+    activeCard.style.setProperty("--stack-content-shift", `${Math.ceil(shift)}px`);
+  };
+
   const updateContexts = () => {
     frame = 0;
-    contexts.forEach((context) => {
-      setActiveContextItem(context, getActiveStackIndex(context.dataset.stackContext));
+    decks.forEach((deck) => {
+      const context = getDeckContext(deck);
+      if (!context) return;
+
+      measureDeck(deck);
+      const activeIndex = getActiveStackIndex(deck);
+      setActiveContextItem(context, activeIndex);
+      syncContentShift(deck, activeIndex);
     });
   };
 
@@ -777,6 +816,15 @@ const initStackContextIndicators = () => {
   updateContexts();
   window.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
+
+  if ("ResizeObserver" in window) {
+    const observer = new ResizeObserver(scheduleUpdate);
+    decks.forEach((deck) => {
+      observer.observe(deck);
+      const context = getDeckContext(deck);
+      if (context) observer.observe(context);
+    });
+  }
 };
 
 const initEventsCarousel = () => {
@@ -837,10 +885,13 @@ const initEventsCarousel = () => {
     };
 
     const scrollToSlide = (slideIndex, behavior = reduceMotion() ? "auto" : "smooth") => {
-      slides[slideIndex]?.scrollIntoView({
+      const slide = slides[slideIndex];
+      if (!slide) return;
+
+      const targetLeft = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+      track.scrollTo({
+        left: Math.max(0, targetLeft),
         behavior,
-        block: "nearest",
-        inline: "center",
       });
     };
 
