@@ -676,36 +676,112 @@ const initHoverVideos = () => {
   const hoverVideos = [...document.querySelectorAll("[data-hover-video]")];
   if (!hoverVideos.length) return;
 
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const touchLabels = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  const stopVideo = (video, { reset = true } = {}) => {
+    const card = video.closest(".video-card");
+    const label = card?.querySelector(".video-card__meta span");
+    video.pause();
+    if (reset) video.currentTime = 0;
+    video.muted = true;
+    card?.classList.remove("is-playing", "is-muted-fallback");
+    card?.setAttribute("aria-pressed", "false");
+    if (label) label.textContent = touchLabels ? "Tap to play" : "Hover to play";
+  };
+
+  const stopOtherVideos = (activeVideo) => {
+    hoverVideos.forEach((video) => {
+      if (video !== activeVideo) stopVideo(video);
+    });
+  };
+
+  const playVideo = async (video, { withSound = false } = {}) => {
+    const card = video.closest(".video-card");
+    const label = card?.querySelector(".video-card__meta span");
+    stopOtherVideos(video);
+    video.muted = !withSound;
+    video.volume = 1;
+    card?.classList.add("is-playing");
+    card?.classList.toggle("is-muted-fallback", video.muted);
+    card?.setAttribute("aria-pressed", "true");
+    if (label) label.textContent = video.muted ? "Playing muted" : "Playing";
+
+    try {
+      await video.play();
+      card?.classList.add("is-playing");
+      card?.classList.toggle("is-muted-fallback", video.muted);
+      card?.setAttribute("aria-pressed", "true");
+      if (label) label.textContent = video.muted ? "Playing muted" : "Playing";
+      return true;
+    } catch (error) {
+      video.muted = true;
+
+      try {
+        await video.play();
+        const label = card?.querySelector(".video-card__meta span");
+        card?.classList.add("is-playing", "is-muted-fallback");
+        card?.setAttribute("aria-pressed", "true");
+        if (label) label.textContent = "Playing muted";
+        return true;
+      } catch (mutedError) {
+        card?.classList.remove("is-playing", "is-muted-fallback");
+        card?.setAttribute("aria-pressed", "false");
+        return false;
+      }
+    }
+  };
+
   hoverVideos.forEach((video) => {
     const card = video.closest(".video-card");
     if (!card) return;
 
-    const playPreview = async () => {
-      video.muted = false;
-      video.volume = 1;
-      try {
-        await video.play();
-      } catch (error) {
-        // Some browsers block hover-initiated audio until the user interacts with the page.
-        video.muted = true;
-        try {
-          await video.play();
-        } catch (mutedError) {
-          // Browser autoplay policies can still block previews in edge cases.
-        }
-      }
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.playsInline = true;
+
+    if (touchLabels) {
+      video.controls = true;
+      const label = card.querySelector(".video-card__meta span");
+      if (label) label.textContent = "Tap to play";
+    }
+
+    card.setAttribute("aria-pressed", "false");
+
+    const playPreview = () => {
+      playVideo(video, { withSound: canHover });
     };
 
     const stopPreview = () => {
-      video.pause();
-      video.currentTime = 0;
-      video.muted = true;
+      stopVideo(video);
     };
 
-    card.addEventListener("mouseenter", playPreview);
-    card.addEventListener("focusin", playPreview);
-    card.addEventListener("mouseleave", stopPreview);
-    card.addEventListener("focusout", stopPreview);
+    const togglePlayback = async (event) => {
+      event.preventDefault();
+
+      if (!video.paused && !video.ended) {
+        stopVideo(video, { reset: false });
+        return;
+      }
+
+      await playVideo(video, { withSound: true });
+    };
+
+    if (canHover) {
+      card.addEventListener("mouseenter", playPreview);
+      card.addEventListener("mouseleave", stopPreview);
+    }
+
+    card.addEventListener("click", togglePlayback);
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      togglePlayback(event);
+    });
+
+    video.addEventListener("pause", () => {
+      if (!video.ended) return;
+      stopVideo(video);
+    });
   });
 };
 

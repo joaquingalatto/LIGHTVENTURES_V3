@@ -80,8 +80,15 @@
 
               <div class="hero__headline-wrap">
                 <h1 class="hero__headline">
-                  <span class="hero__headline-line">Founders helping founders</span>
-                  <span class="hero__headline-line">bring light and</span>
+                  <span class="hero__headline-line hero__headline-line--founders">
+                    <span>Founders</span>
+                    <span>helping</span>
+                    <span>founders</span>
+                  </span>
+                  <span class="hero__headline-line hero__headline-line--bring">
+                    <span>bring light</span>
+                    <span>and</span>
+                  </span>
                   <span class="hero__headline-line hero__headline-line--accent">
                     <span class="hero__headline-mark" aria-hidden="true">
                       <svg viewBox="0 0 150 129" focusable="false">
@@ -102,7 +109,10 @@
                     </span>
                     <span>innovation</span>
                   </span>
-                  <span class="hero__headline-line">into the world.</span>
+                  <span class="hero__headline-line hero__headline-line--world">
+                    <span>into the</span>
+                    <span>world.</span>
+                  </span>
                 </h1>
               </div>
 
@@ -202,7 +212,7 @@
 
               <div class="video-section__media reveal">
                 <div class="video-section__grid">
-                  <article class="video-card video-card--active" tabindex="0">
+                  <article class="video-card video-card--active" tabindex="0" role="button">
                     <div class="video-card__viewport">
                       <video
                         class="video-section__player"
@@ -211,6 +221,9 @@
                         muted
                         loop
                         playsinline
+                        webkit-playsinline
+                        crossorigin="anonymous"
+                        controlslist="nodownload noplaybackrate"
                         preload="metadata"
                         aria-label="Light Ventures introduction film"
                       >
@@ -227,7 +240,7 @@
                     </div>
                   </article>
 
-                  <article class="video-card" tabindex="0">
+                  <article class="video-card" tabindex="0" role="button">
                     <div class="video-card__viewport">
                       <video
                         class="video-section__player"
@@ -235,6 +248,9 @@
                         muted
                         loop
                         playsinline
+                        webkit-playsinline
+                        crossorigin="anonymous"
+                        controlslist="nodownload noplaybackrate"
                         preload="metadata"
                         aria-label="Doug Light Ventures film"
                       >
@@ -484,7 +500,7 @@
               </div>
             </aside>
 
-            <article class="video-card team-video-card reveal" tabindex="0">
+            <article class="video-card team-video-card reveal" tabindex="0" role="button">
               <div class="video-card__viewport team-video-card__viewport">
                 <video
                   class="video-section__player"
@@ -492,6 +508,9 @@
                   muted
                   loop
                   playsinline
+                  webkit-playsinline
+                  crossorigin="anonymous"
+                  controlslist="nodownload noplaybackrate"
                   preload="metadata"
                   aria-label="David Park partnership film"
                 >
