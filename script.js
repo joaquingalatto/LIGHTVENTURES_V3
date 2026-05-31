@@ -788,10 +788,6 @@ const initHoverVideos = () => {
 const initStackContextIndicators = () => {
   const decks = [...document.querySelectorAll("[data-stacked-card-deck]")];
   if (!decks.length) return;
-  let frame = 0;
-
-  const getDeckContext = (deck) => deck.querySelector("[data-stack-context]");
-  const getDeckCards = (deck) => [...deck.querySelectorAll("[data-stack-card]")];
 
   const setActiveContextItem = (context, activeIndex) => {
     context.querySelectorAll("[data-stack-context-item]").forEach((item) => {
@@ -806,101 +802,38 @@ const initStackContextIndicators = () => {
     });
   };
 
-  const measureDeck = (deck) => {
-    const context = getDeckContext(deck);
-    if (!context) return;
+  decks.forEach((deck) => {
+    const context = deck.querySelector("[data-stack-context]");
+    const cards = [...deck.querySelectorAll("[data-stack-card]")];
 
-    deck.style.setProperty("--stack-index-height", `${context.offsetHeight}px`);
-  };
+    if (!context || !cards.length) return;
 
-  const getActiveStackIndex = (deck) => {
-    const cards = getDeckCards(deck);
-    if (!cards.length) return 0;
+    setActiveContextItem(context, Number(cards[0].dataset.stackIndex || 0));
 
-    let activeIndex = Number(cards[0].dataset.stackIndex || 0);
-    let nearestIndex = activeIndex;
-    let nearestDistance = Number.POSITIVE_INFINITY;
-    let hasMountedCard = false;
+    if (!("IntersectionObserver" in window)) return;
 
-    cards.forEach((card, orderIndex) => {
-      const rect = card.getBoundingClientRect();
-      const cardIndex = Number(card.dataset.stackIndex || orderIndex);
-      const stickyTop = Number.parseFloat(window.getComputedStyle(card).top) || 0;
-      const distance = Math.abs(rect.top - stickyTop);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      if (distance < nearestDistance) {
-        nearestDistance = distance;
-        nearestIndex = cardIndex;
+        if (!activeEntry) return;
+
+        setActiveContextItem(
+          context,
+          Number(activeEntry.target.dataset.stackIndex || 0)
+        );
+      },
+      {
+        root: null,
+        rootMargin: "-42% 0px -42% 0px",
+        threshold: [0, 0.2, 0.5, 0.8, 1],
       }
-
-      if (rect.top <= stickyTop + 1) {
-        activeIndex = cardIndex;
-        hasMountedCard = true;
-      }
-    });
-
-    return hasMountedCard ? activeIndex : nearestIndex;
-  };
-
-  const syncContentShift = (deck, activeIndex) => {
-    const context = getDeckContext(deck);
-    const cards = getDeckCards(deck);
-    const activeCard = cards.find(
-      (card, orderIndex) => Number(card.dataset.stackIndex || orderIndex) === activeIndex
     );
 
-    if (!context || !activeCard) return;
-
-    const contextRect = context.getBoundingClientRect();
-    const contentNodes = [
-      ...activeCard.querySelectorAll(".lifecycle-stage__body, .events-card__body"),
-    ];
-
-    if (!contentNodes.length) return;
-
-    const currentShift =
-      Number.parseFloat(window.getComputedStyle(activeCard).getPropertyValue("--stack-content-shift")) || 0;
-    const contentTop = Math.min(
-      ...contentNodes.map((node) => node.getBoundingClientRect().top - currentShift)
-    );
-    const safeTop = contextRect.bottom + 18;
-    const overlap = Math.max(0, safeTop - contentTop);
-    const shift = Math.min(overlap, 150);
-
-    cards.forEach((card) => card.style.setProperty("--stack-content-shift", "0px"));
-    activeCard.style.setProperty("--stack-content-shift", `${Math.ceil(shift)}px`);
-  };
-
-  const updateContexts = () => {
-    frame = 0;
-    decks.forEach((deck) => {
-      const context = getDeckContext(deck);
-      if (!context) return;
-
-      measureDeck(deck);
-      const activeIndex = getActiveStackIndex(deck);
-      setActiveContextItem(context, activeIndex);
-      syncContentShift(deck, activeIndex);
-    });
-  };
-
-  const scheduleUpdate = () => {
-    if (frame) return;
-    frame = window.requestAnimationFrame(updateContexts);
-  };
-
-  updateContexts();
-  window.addEventListener("scroll", scheduleUpdate, { passive: true });
-  window.addEventListener("resize", scheduleUpdate);
-
-  if ("ResizeObserver" in window) {
-    const observer = new ResizeObserver(scheduleUpdate);
-    decks.forEach((deck) => {
-      observer.observe(deck);
-      const context = getDeckContext(deck);
-      if (context) observer.observe(context);
-    });
-  }
+    cards.forEach((card) => observer.observe(card));
+  });
 };
 
 const initEventsCarousel = () => {
