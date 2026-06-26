@@ -16,7 +16,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "ViroMissile",
           asset: "assets/portfolio/viromissile.png",
-          url: "",
+          url: "https://viromissile.com/",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-tech.png",
@@ -47,7 +47,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "Live Data Technologies",
           asset: "assets/portfolio/live-data-technologies.png",
-          url: "",
+          url: "https://www.livedatatechnologies.com/",
           ceo: {
             name: "J. Scott Hamilton",
             image: "assets/portfolio-ceos/j-scott-hamilton.png",
@@ -82,7 +82,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "Rad AI",
           asset: "assets/portfolio/rad-ai.png",
-          url: "",
+          url: "https://www.radai.com/",
           ceo: {
             name: "Doktor Gurson",
             image: "assets/portfolio-ceos/doktor-gurson.png",
@@ -93,7 +93,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "Ultrasound AI",
           asset: "assets/portfolio/ultrasound-ai.png",
-          url: "",
+          url: "https://ultrasound.ai/",
           ceo: {
             name: "Robert Bunn",
             image: "assets/portfolio-ceos/robert-bunn.jpg",
@@ -105,7 +105,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "MedWatch Technologies",
           asset: "assets/portfolio/medwatch-technologies.png",
-          url: "",
+          url: "https://medwatchtech.com/",
           ceo: {
             name: "Sam Zaidspiner",
             image: "assets/portfolio-ceos/sam-zaidspiner.png",
@@ -149,7 +149,7 @@ window.PORTFOLIO_DATA = {
         {
           name: "Illuno",
           asset: "assets/portfolio/illuno.png",
-          url: "",
+          url: "https://www.illuno.com/",
           ceo: {
             name: "Craig R. Peus",
             image: "assets/portfolio-ceos/craig-r-peus.png",
