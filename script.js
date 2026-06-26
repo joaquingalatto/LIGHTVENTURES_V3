@@ -971,12 +971,24 @@ const createTeamCard = (member) => {
   const portrait = document.createElement("span");
   portrait.className = "team-card__portrait";
 
-  const image = document.createElement("img");
-  image.src = member.image;
-  image.alt = member.name;
-  image.loading = "lazy";
-  image.decoding = "async";
-  portrait.append(image);
+  if (member.image) {
+    const image = document.createElement("img");
+    image.src = member.image;
+    image.alt = member.name;
+    image.loading = "lazy";
+    image.decoding = "async";
+    portrait.append(image);
+  } else {
+    const initials = document.createElement("span");
+    initials.className = "team-card__portrait-initials";
+    initials.textContent = member.name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join("");
+    portrait.append(initials);
+  }
 
   const body = document.createElement("span");
   body.className = "team-card__body";
@@ -1124,6 +1136,7 @@ const createPortfolioCard = (company) => {
 
   const visual = document.createElement("div");
   visual.className = "portfolio-card__visual";
+  const visualContent = document.createDocumentFragment();
 
   if (company.asset) {
     const logo = document.createElement("img");
@@ -1131,19 +1144,41 @@ const createPortfolioCard = (company) => {
     logo.alt = `${company.name} logo`;
     logo.loading = "lazy";
     logo.decoding = "async";
-    visual.append(logo);
+    visualContent.append(logo);
   } else {
     const fallback = document.createElement("span");
     fallback.className = "portfolio-card__fallback";
     fallback.textContent = company.name;
-    visual.append(fallback);
+    visualContent.append(fallback);
+  }
+
+  if (company.url) {
+    const visualLink = document.createElement("a");
+    visualLink.className = "portfolio-card__visual-link";
+    visualLink.href = company.url;
+    visualLink.target = "_blank";
+    visualLink.rel = "noreferrer";
+    visualLink.setAttribute("aria-label", `Visit ${company.name}`);
+    visualLink.append(visualContent);
+    visual.append(visualLink);
+  } else {
+    visual.append(visualContent);
   }
 
   const meta = document.createElement("div");
   meta.className = "portfolio-card__meta";
 
   const name = document.createElement("h3");
-  name.textContent = company.name;
+  if (company.url) {
+    const nameLink = document.createElement("a");
+    nameLink.href = company.url;
+    nameLink.target = "_blank";
+    nameLink.rel = "noreferrer";
+    nameLink.textContent = company.name;
+    name.append(nameLink);
+  } else {
+    name.textContent = company.name;
+  }
 
   const category = document.createElement("p");
   category.textContent = company.categoryLabel;
@@ -1158,7 +1193,7 @@ const createPortfolioCard = (company) => {
     const ceoCard = document.createElement("aside");
     ceoCard.className = "portfolio-card__ceo";
     ceoCard.id = ceoId;
-    ceoCard.setAttribute("aria-label", `${company.name} CEO`);
+    ceoCard.setAttribute("aria-label", `${company.name} ${company.ceo.role || "CEO"}`);
 
     const ceoMedia = document.createElement("span");
     ceoMedia.className = "portfolio-card__ceo-media";
@@ -1170,6 +1205,16 @@ const createPortfolioCard = (company) => {
       ceoImage.loading = "lazy";
       ceoImage.decoding = "async";
       ceoMedia.append(ceoImage);
+    } else {
+      const ceoInitials = document.createElement("span");
+      ceoInitials.className = "portfolio-card__ceo-initials";
+      ceoInitials.textContent = company.ceo.name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0])
+        .join("");
+      ceoMedia.append(ceoInitials);
     }
 
     const ceoBody = document.createElement("span");
@@ -1177,10 +1222,15 @@ const createPortfolioCard = (company) => {
 
     const ceoRole = document.createElement("span");
     ceoRole.className = "portfolio-card__ceo-role";
-    ceoRole.textContent = "CEO";
+    ceoRole.textContent = company.ceo.role || "CEO";
 
-    const ceoName = document.createElement("strong");
+    const ceoName = document.createElement(company.ceo.url ? "a" : "strong");
     ceoName.textContent = company.ceo.name;
+    if (company.ceo.url) {
+      ceoName.href = company.ceo.url;
+      ceoName.target = "_blank";
+      ceoName.rel = "noreferrer";
+    }
 
     const ceoSummary = document.createElement("span");
     ceoSummary.className = "portfolio-card__ceo-summary";

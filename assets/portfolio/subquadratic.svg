@@ -1,0 +1,11 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" role="img" aria-labelledby="title">
+  <title id="title">Subquadratic</title>
+  <g transform="translate(0 8)">
+    <rect width="16" height="16" fill="#2A2829"/>
+    <rect x="16" y="16" width="16" height="16" fill="#777270"/>
+    <rect x="32" width="16" height="16" fill="#2A2829"/>
+    <rect y="32" width="16" height="16" fill="#777270"/>
+    <rect x="32" y="32" width="16" height="16" fill="#2A2829"/>
+  </g>
+  <text x="72" y="43" fill="#2A2829" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700" letter-spacing="-1.2">Subquadratic</text>
+</svg>

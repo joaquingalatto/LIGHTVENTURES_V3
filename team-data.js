@@ -71,6 +71,33 @@ window.TEAM_DATA = {
           profileUrl: "",
         },
         {
+          id: "tim-day",
+          name: "Tim Day",
+          role: "Advisor",
+          summary:
+            "Advisor supporting Light Ventures with operating, venture, and innovation platform perspective.",
+          image: "assets/team/tim-day.jpg",
+          profileUrl: "https://www.linkedin.com/in/tim-day-phd/",
+        },
+        {
+          id: "scott-glenn",
+          name: "Scott Glenn",
+          role: "Advisor",
+          summary:
+            "Advisor supporting founder development, venture relationships, and company-building conversations.",
+          image: "",
+          profileUrl: "https://www.linkedin.com/in/scott-glenn-09832089/",
+        },
+        {
+          id: "mark-mckenna",
+          name: "Mark McKenna",
+          role: "Advisor",
+          summary:
+            "Advisor supporting aligned venture opportunities, strategic partnerships, and operating insight.",
+          image: "assets/team/mark-mckenna.jpg",
+          profileUrl: "https://www.linkedin.com/in/markcmckenna1/",
+        },
+        {
           id: "jerome-fogel",
           name: "Jerome Fogel",
           role: "Advisor",
@@ -78,15 +105,6 @@ window.TEAM_DATA = {
             "Partner at Fogel & Potamianos LLP and a distinguished dealmaker, innovator, and author.",
           image: "assets/team/jerome-fogel.png",
           profileUrl: "https://lightventures.net/portfolio/jerome-fogel/",
-        },
-        {
-          id: "james-nolan",
-          name: "James Nolan",
-          role: "Advisor",
-          summary:
-            "Intellectual property specialist supporting founders as they build defensible technology and durable company value.",
-          image: "assets/team/james-nolan.png",
-          profileUrl: "",
         },
         {
           id: "barry-yee",
@@ -105,6 +123,30 @@ window.TEAM_DATA = {
             "Founder of The Mentor’s Forum with a mentorship-centered perspective on leadership, company building, and founder development.",
           image: "assets/team/tom-waller.png",
           profileUrl: "",
+        },
+      ],
+    },
+    {
+      key: "fund-operations",
+      label: "Fund Operations",
+      members: [
+        {
+          id: "holly-evans",
+          name: "Holly Evans",
+          role: "Fund Operations",
+          summary:
+            "Fund operations partner supporting venture administration, investor coordination, and operational execution.",
+          image: "assets/team/holly-evans.jpg",
+          profileUrl: "https://vivalavidavip.com/",
+        },
+        {
+          id: "brent-wall",
+          name: "Brent Wall",
+          role: "Fund Operations",
+          summary:
+            "Fund operations partner supporting Light Ventures with operating discipline, fund workflows, and execution support.",
+          image: "",
+          profileUrl: "https://www.linkedin.com/in/brent-wall-356400119/",
         },
       ],
     },

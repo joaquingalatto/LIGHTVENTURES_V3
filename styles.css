@@ -1863,6 +1863,20 @@ body.hero-motion-active .hero__ambient {
     filter var(--motion-base) var(--ease-premium);
 }
 
+.team-card__portrait-initials {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(215, 221, 217, 0.86), rgba(242, 241, 240, 0.68)),
+    var(--surface);
+  color: var(--blue);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
 .team-card__body {
   display: grid;
   gap: 0.4rem;
@@ -2180,6 +2194,13 @@ body.hero-motion-active .hero__ambient {
   border: 1px solid color-mix(in srgb, var(--card-accent, var(--sage)) 22%, rgba(42, 40, 41, 0.08));
 }
 
+.portfolio-card__visual-link {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
 .portfolio-card__visual img {
   max-width: min(94%, 17rem);
   max-height: 5.25rem;
@@ -2204,6 +2225,12 @@ body.hero-motion-active .hero__ambient {
 
 .portfolio-card__meta h3 {
   font-size: 0.95rem;
+}
+
+.portfolio-card__meta h3 a:hover,
+.portfolio-card__meta h3 a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .portfolio-card__meta p {
@@ -2260,6 +2287,20 @@ body.hero-motion-active .hero__ambient {
   filter: grayscale(100%);
 }
 
+.portfolio-card__ceo-initials {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(215, 221, 217, 0.86), rgba(242, 241, 240, 0.72)),
+    var(--surface);
+  color: var(--blue);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
 .portfolio-card__ceo-body {
   display: grid;
   gap: 0.28rem;
@@ -2278,6 +2319,20 @@ body.hero-motion-active .hero__ambient {
   font-size: 0.86rem;
   line-height: 1.1;
   letter-spacing: -0.04em;
+}
+
+.portfolio-card__ceo-body a {
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.portfolio-card__ceo-body a:hover,
+.portfolio-card__ceo-body a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .portfolio-card__ceo-summary {

@@ -16,18 +16,11 @@ window.PORTFOLIO_DATA = {
         {
           name: "ViroMissile",
           asset: "assets/portfolio/viromissile.png",
+          url: "",
           ceo: {
             name: "Nanhai Chen",
             image: "assets/portfolio-ceos/nanhai-chen-tech.png",
-            summary: "Delivering quantum light engines at scale.",
-          },
-        },
-        {
-          name: "MEVA",
-          asset: "assets/portfolio/meva.png",
-          ceo: {
-            name: "Nanhai Chen",
-            image: "assets/portfolio-ceos/nanhai-chen-meva.png",
+            role: "CEO",
             summary: "Delivering quantum light engines at scale.",
           },
         },
@@ -42,18 +35,23 @@ window.PORTFOLIO_DATA = {
         {
           name: "Monarch Quantum",
           asset: "assets/portfolio/monarch-quantum.png",
+          url: "https://monarchquantum.com/",
           ceo: {
-            name: "Nanhai Chen",
-            image: "assets/portfolio-ceos/nanhai-chen-tech.png",
-            summary: "Delivering quantum light engines at scale.",
+            name: "Tim Day",
+            image: "assets/portfolio-ceos/tim-day.jpg",
+            role: "CEO",
+            url: "https://www.linkedin.com/in/tim-day-phd/",
+            summary: "Leading Monarch Quantum at the intersection of quantum technology and company formation.",
           },
         },
         {
           name: "Live Data Technologies",
           asset: "assets/portfolio/live-data-technologies.png",
+          url: "",
           ceo: {
             name: "J. Scott Hamilton",
             image: "assets/portfolio-ceos/j-scott-hamilton.png",
+            role: "CEO",
             summary: "Delivering quantum light engines at scale.",
           },
         },
@@ -70,29 +68,48 @@ window.PORTFOLIO_DATA = {
       foreground: "var(--bg)",
       companies: [
         {
+          name: "Glo Skin Beauty",
+          asset: "assets/portfolio/glo-skin-beauty.svg",
+          url: "https://www.gloskinbeauty.com/",
+          ceo: {
+            name: "Glo Skin Beauty Leadership Team",
+            image: "",
+            role: "CEO",
+            url: "https://www.gloskinbeauty.com/pages/meet-the-glo-leadership-team",
+            summary: "Beauty and skincare leadership team building a global professional skincare brand.",
+          },
+        },
+        {
           name: "Rad AI",
           asset: "assets/portfolio/rad-ai.png",
+          url: "",
           ceo: {
             name: "Doktor Gurson",
             image: "assets/portfolio-ceos/doktor-gurson.png",
+            role: "CEO",
             summary: "Empowering physicians and health systems with AI.",
           },
         },
         {
           name: "Ultrasound AI",
           asset: "assets/portfolio/ultrasound-ai.png",
+          url: "",
           ceo: {
-            name: "Michael S. Davis",
-            image: "assets/portfolio-ceos/michael-s-davis.png",
-            summary: "Delivering quantum light engines at scale.",
+            name: "Robert Bunn",
+            image: "assets/portfolio-ceos/robert-bunn.jpg",
+            role: "Founder",
+            url: "https://ultrasound.ai/team-members/robert-bunn/",
+            summary: "Founder advancing AI-enabled ultrasound technology.",
           },
         },
         {
           name: "MedWatch Technologies",
           asset: "assets/portfolio/medwatch-technologies.png",
+          url: "",
           ceo: {
             name: "Sam Zaidspiner",
             image: "assets/portfolio-ceos/sam-zaidspiner.png",
+            role: "CEO",
             summary:
               "First needle-free glucose biosensor and health coaching app turning glucose insights into healthier choices.",
           },
@@ -106,21 +123,50 @@ window.PORTFOLIO_DATA = {
       foreground: "var(--bg)",
       companies: [
         {
+          name: "Subquadratic",
+          asset: "assets/portfolio/subquadratic.svg",
+          url: "https://subq.ai/",
+          ceo: {
+            name: "Alexander Whedon",
+            image: "",
+            role: "Co-Founder",
+            url: "https://www.linkedin.com/in/alexander-whedon/",
+            summary: "Co-founder building Subquadratic for advanced AI and compute applications.",
+          },
+        },
+        {
+          name: "MEVA",
+          asset: "assets/portfolio/meva.png",
+          url: "https://www.gomeva.com/",
+          ceo: {
+            name: "Jeff Gilbert",
+            image: "",
+            role: "CEO",
+            url: "https://www.gomeva.com/",
+            summary: "CEO leading MEVA across AI-enabled healthcare applications.",
+          },
+        },
+        {
           name: "Illuno",
           asset: "assets/portfolio/illuno.png",
+          url: "",
           ceo: {
             name: "Craig R. Peus",
             image: "assets/portfolio-ceos/craig-r-peus.png",
+            role: "CEO",
             summary: "Platform connecting businesses with verified local off-duty officers.",
           },
         },
         {
-          name: "SeedsMatch",
-          asset: "assets/portfolio/seedsmatch.png",
+          name: "Loligo",
+          asset: "assets/portfolio/loligo.png",
+          url: "https://loligo.ai/",
           ceo: {
-            name: "Nanhai Chen",
-            image: "assets/portfolio-ceos/nanhai-chen-seedsmatch.png",
-            summary: "Recruitment platform with AI agents for mass hiring.",
+            name: "Ignacio Basso",
+            image: "",
+            role: "Founder",
+            url: "https://www.linkedin.com/in/ignaciobasso/",
+            summary: "Founder building Loligo for AI-enabled workflows and applications.",
           },
         },
       ],
