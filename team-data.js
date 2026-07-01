@@ -85,7 +85,7 @@ window.TEAM_DATA = {
           role: "Advisor",
           summary:
             "Advisor supporting founder development, venture relationships, and company-building conversations.",
-          image: "",
+          image: "assets/team/scott-glenn.jpg",
           profileUrl: "https://www.linkedin.com/in/scott-glenn-09832089/",
         },
         {
@@ -145,7 +145,7 @@ window.TEAM_DATA = {
           role: "Fund Operations",
           summary:
             "Fund operations partner supporting Light Ventures with operating discipline, fund workflows, and execution support.",
-          image: "",
+          image: "assets/team/brent-wall.jpg",
           profileUrl: "https://www.linkedin.com/in/brent-wall-356400119/",
         },
       ],

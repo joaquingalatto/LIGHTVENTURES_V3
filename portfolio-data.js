@@ -72,11 +72,11 @@ window.PORTFOLIO_DATA = {
           asset: "assets/portfolio/glo-skin-beauty.svg",
           url: "https://www.gloskinbeauty.com/",
           ceo: {
-            name: "Glo Skin Beauty Leadership Team",
-            image: "",
+            name: "Kurt Globber",
+            image: "assets/portfolio-ceos/kurt-globber.jpg",
             role: "CEO",
             url: "https://www.gloskinbeauty.com/pages/meet-the-glo-leadership-team",
-            summary: "Beauty and skincare leadership team building a global professional skincare brand.",
+            summary: "CEO helping lead Glo Skin Beauty as a global professional skincare brand.",
           },
         },
         {
@@ -128,7 +128,7 @@ window.PORTFOLIO_DATA = {
           url: "https://subq.ai/",
           ceo: {
             name: "Alexander Whedon",
-            image: "",
+            image: "assets/portfolio-ceos/alexander-whedon.jpg",
             role: "Co-Founder",
             url: "https://www.linkedin.com/in/alexander-whedon/",
             summary: "Co-founder building Subquadratic for advanced AI and compute applications.",
@@ -140,7 +140,7 @@ window.PORTFOLIO_DATA = {
           url: "https://www.gomeva.com/",
           ceo: {
             name: "Jeff Gilbert",
-            image: "",
+            image: "assets/portfolio-ceos/jeff-gilbert.jpg",
             role: "CEO",
             url: "https://www.gomeva.com/",
             summary: "CEO leading MEVA across AI-enabled healthcare applications.",
@@ -163,7 +163,7 @@ window.PORTFOLIO_DATA = {
           url: "https://loligo.ai/",
           ceo: {
             name: "Ignacio Basso",
-            image: "",
+            image: "assets/portfolio-ceos/ignacio-basso.jpg",
             role: "Founder",
             url: "https://www.linkedin.com/in/ignaciobasso/",
             summary: "Founder building Loligo for AI-enabled workflows and applications.",

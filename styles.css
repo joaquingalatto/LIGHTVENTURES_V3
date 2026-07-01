@@ -940,6 +940,20 @@ body.hero-motion-active .hero__ambient {
   list-style: none;
 }
 
+.love-card__body p {
+  margin: 0;
+  color: rgba(42, 40, 41, 0.68);
+  font-size: clamp(0.94rem, 1.15vw, 1.03rem);
+  line-height: 1.7;
+}
+
+.love-card__body .love-card__lead {
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
 .love-card__body li {
   position: relative;
   padding-left: 1.6rem;
