@@ -24,6 +24,22 @@ window.PORTFOLIO_DATA = {
             summary: "Delivering quantum light engines at scale.",
           },
         },
+        {
+          name: "Glo Skin Beauty",
+          asset: "assets/portfolio/glo-skin-beauty.svg",
+          url: "https://www.gloskinbeauty.com/",
+          ceo: {
+            name: "Kurt Globber",
+            image: "assets/portfolio-ceos/kurt-globber.jpg",
+            role: "CEO",
+            url: "https://www.gloskinbeauty.com/pages/meet-the-glo-leadership-team",
+            summary: "CEO helping lead Glo Skin Beauty as a global professional skincare brand.",
+          },
+        },
+        {
+          name: "Stealth",
+          asset: "",
+        },
       ],
     },
     {
@@ -56,8 +72,15 @@ window.PORTFOLIO_DATA = {
           },
         },
         {
-          name: "Stealth",
-          asset: "",
+          name: "Illuno",
+          asset: "assets/portfolio/illuno.png",
+          url: "https://www.illuno.com/",
+          ceo: {
+            name: "Craig R. Peus",
+            image: "assets/portfolio-ceos/craig-r-peus.png",
+            role: "CEO",
+            summary: "Platform connecting businesses with verified local off-duty officers.",
+          },
         },
       ],
     },
@@ -67,18 +90,6 @@ window.PORTFOLIO_DATA = {
       accent: "#f05a28",
       foreground: "var(--bg)",
       companies: [
-        {
-          name: "Glo Skin Beauty",
-          asset: "assets/portfolio/glo-skin-beauty.svg",
-          url: "https://www.gloskinbeauty.com/",
-          ceo: {
-            name: "Kurt Globber",
-            image: "assets/portfolio-ceos/kurt-globber.jpg",
-            role: "CEO",
-            url: "https://www.gloskinbeauty.com/pages/meet-the-glo-leadership-team",
-            summary: "CEO helping lead Glo Skin Beauty as a global professional skincare brand.",
-          },
-        },
         {
           name: "Rad AI",
           asset: "assets/portfolio/rad-ai.png",
@@ -144,17 +155,6 @@ window.PORTFOLIO_DATA = {
             role: "CEO",
             url: "https://www.gomeva.com/",
             summary: "CEO leading MEVA across AI-enabled healthcare applications.",
-          },
-        },
-        {
-          name: "Illuno",
-          asset: "assets/portfolio/illuno.png",
-          url: "https://www.illuno.com/",
-          ceo: {
-            name: "Craig R. Peus",
-            image: "assets/portfolio-ceos/craig-r-peus.png",
-            role: "CEO",
-            summary: "Platform connecting businesses with verified local off-duty officers.",
           },
         },
         {
